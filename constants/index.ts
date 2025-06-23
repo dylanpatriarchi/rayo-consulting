@@ -422,7 +422,7 @@ export const PRICING_PLANS = [
 
 export const REVIEWS = [
   {
-    name: "Marco Mancio",
+    name: "Francesco Mancini",
     company: "Mancio Corporate Ltd",
     role: "CEO",
     image: "/reviews/marco-mancio.jpg",
@@ -442,7 +442,7 @@ export const REVIEWS = [
     result: "10,000+ confronti/giorno"
   },
   {
-    name: "Alessandro Rossi",
+    name: "Team XYZ",
     company: "XYZ Consulting",
     role: "Managing Director",
     image: "/reviews/alessandro-rossi.jpg",
@@ -452,7 +452,7 @@ export const REVIEWS = [
     result: "3x lead qualificati"
   },
   {
-    name: "Adriano Montanari",
+    name: "Team Adrianmo",
     company: "Studio Consulenza Adrianmo",
     role: "Senior Partner",
     image: "/reviews/adriano-montanari.jpg",
