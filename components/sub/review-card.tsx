@@ -96,7 +96,7 @@ export const ReviewCard = ({
 
       {/* Testo recensione */}
       <blockquote className="text-gray-300 text-sm sm:text-base leading-relaxed mb-4 sm:mb-6 flex-grow italic">
-        "{text}"
+        &ldquo;{text}&rdquo;
       </blockquote>
 
       {/* Footer con progetto e risultato */}

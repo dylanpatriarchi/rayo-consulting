@@ -214,7 +214,7 @@ export default function PrivacyPolicy() {
                   <h4 className="font-semibold text-white mb-3">⚖️ Diritti di Ricorso</h4>
                   <ul className="text-gray-300 text-sm space-y-1">
                     <li>• Reclamo al Garante</li>
-                    <li>• Ricorso all'autorità</li>
+                    <li>• Ricorso all&apos;autorità</li>
                     <li>• Azione legale</li>
                   </ul>
                 </div>

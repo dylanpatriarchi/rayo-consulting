@@ -10,7 +10,7 @@ export default function CookiePolicy() {
             Cookie Policy
           </h1>
           <p className="text-gray-400 text-lg">
-            Informativa sull'uso dei cookie - Rayo Consulting di Patriarchi Dylan
+            Informativa sull&apos;uso dei cookie - Rayo Consulting di Patriarchi Dylan
           </p>
           <p className="text-gray-500 text-sm mt-2">
             Ultimo aggiornamento: {new Date().toLocaleDateString('it-IT')}

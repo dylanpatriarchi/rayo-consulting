@@ -208,7 +208,7 @@ export const Footer = () => {
                     <HeartIcon className="h-4 w-4 text-red-400" />
                   </motion.div>
                 </span>
-                <span>e tecnologia all'avanguardia</span>
+                <span>e tecnologia all&apos;avanguardia</span>
               </div>
             </div>
           </div>
