@@ -69,10 +69,24 @@ export const CookieBanner = () => {
             </div>
           </div>
           
+          {/* Links alle policy */}
+          <div className="mt-3 pt-3 border-t border-gray-600 text-center">
+            <p className="text-xs text-gray-400">
+              Per maggiori informazioni consulta la nostra{" "}
+              <a href="/cookie-policy" className="text-purple-400 hover:text-purple-300 underline">
+                Cookie Policy
+              </a>{" "}
+              e{" "}
+              <a href="/privacy-policy" className="text-purple-400 hover:text-purple-300 underline">
+                Privacy Policy
+              </a>
+            </p>
+          </div>
+          
           {/* Info legali */}
           <div className="mt-4 pt-4 border-t border-gray-700 text-center">
             <p className="text-xs text-gray-500">
-              Rayo Consulting SRL • P.IVA: 03988190546 • Città di Castello (PG) • 
+              Rayo Consulting di Patriarchi Dylan • P.IVA: 03988190546 • Città di Castello (PG) • 
               <a href="mailto:info@rayoconsulting.org" className="text-purple-400 hover:text-purple-300 ml-1">
                 info@rayoconsulting.org
               </a>
