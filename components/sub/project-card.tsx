@@ -29,9 +29,9 @@ export const ProjectCard = ({
         className="w-full object-contain"
       />
 
-      <div className="relative p-4">
-        <h1 className="text-2xl font-semibold text-white">{title}</h1>
-        <p className="mt-2 text-gray-300">{description}</p>
+      <div className="relative p-4 sm:p-6">
+        <h1 className="text-lg sm:text-xl md:text-2xl font-semibold text-white">{title}</h1>
+        <p className="mt-2 text-sm sm:text-base text-gray-300">{description}</p>
       </div>
     </Link>
   );

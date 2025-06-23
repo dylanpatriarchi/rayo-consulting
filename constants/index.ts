@@ -92,17 +92,7 @@ export const SOCIALS = [
   {
     name: "Instagram",
     icon: RxInstagramLogo,
-    link: "https://instagram.com",
-  },
-  {
-    name: "Facebook",
-    icon: FaFacebook,
-    link: "https://facebook.com",
-  },
-  {
-    name: "Twitter",
-    icon: RxTwitterLogo,
-    link: "https://twitter.com",
+    link: "https://instagram.com/rayo.consulting",
   },
 ] as const;
 
@@ -308,37 +298,32 @@ export const FOOTER_DATA = [
       {
         name: "Instagram",
         icon: RxInstagramLogo,
-        link: "https://instagram.com",
+        link: "https://instagram.com/rayo.consulting",
       },
       {
-        name: "Twitter",
-        icon: RxTwitterLogo,
-        link: "https://twitter.com",
-      },
-      {
-        name: "Linkedin",
+        name: "LinkedIn",
         icon: RxLinkedinLogo,
-        link: "https://linkedin.com",
+        link: "https://linkedin.com/company/rayo-consulting",
       },
     ],
   },
   {
-    title: "About",
+    title: "Contatti",
     data: [
       {
-        name: "Become Sponsor",
+        name: "Diventa Partner",
         icon: null,
         link: "https://youtube.com",
       },
       {
-        name: "Learning about me",
+        name: "Chi Siamo",
         icon: null,
         link: "https://example.com",
       },
       {
-        name: "Contact Me",
+        name: "Scrivici",
         icon: null,
-        link: "mailto:contact@example.com",
+        link: "mailto:info@rayoconsulting.org",
       },
     ],
   },
@@ -346,20 +331,28 @@ export const FOOTER_DATA = [
 
 export const NAV_LINKS = [
   {
-    title: "About me",
+    title: "Chi Siamo",
     link: "#about-me",
   },
   {
-    title: "Skills",
+    title: "Competenze",
     link: "#skills",
   },
   {
-    title: "Projects",
+    title: "Progetti",
     link: "#projects",
   },
   {
-    title: "Pricing",
+    title: "Recensioni",
+    link: "#reviews",
+  },
+  {
+    title: "Prezzi",
     link: "#pricing",
+  },
+  {
+    title: "Contatti",
+    link: "#contact",
   },
 ] as const;
 
@@ -372,68 +365,111 @@ export const PRICING_PLANS = [
     title: "Sito Web",
     price: "€750",
     period: "a partire da",
-    description: "Presenza online professionale per la tua azienda con design moderno e responsive",
-    features: [
-      "Design responsive e moderno",
-      "Ottimizzazione SEO",
-      "Integrazione social media",
-      "Modulo contatti",
-      "Hosting e dominio inclusi",
-      "Supporto post-lancio",
-      "Tempi di consegna: 2-3 settimane"
-    ],
+    description: "La tua vetrina digitale che converte visitatori in clienti e genera leads 24/7",
+          features: [
+        "Design che converte il 40% in più",
+        "SEO ottimizzato per primi su Google",
+        "Social media integrati per viralità",
+        "Sistema lead generation automatico",
+        "Hosting veloce e dominio premium",
+        "Supporto dedicato per 3 mesi",
+        "Online in 2-3 settimane garantito"
+      ],
     highlight: false,
-    buttonText: "Richiedi preventivo"
+    buttonText: "Parti ora"
   },
   {
     title: "Web App",
     price: "€1,400",
     period: "a partire da",
-    description: "Applicazioni web interattive e funzionali per digitalizzare i tuoi processi aziendali",
-    features: [
-      "Applicazione web personalizzata",
-      "Dashboard amministrativa",
-      "Gestione utenti e permessi",
-      "Database integrato",
-      "API custom",
-      "Deploy su cloud",
-      "Tempi di consegna: 4-6 settimane"
-    ],
+    description: "Automatizza i processi, riduci i costi operativi e scala il business senza limiti",
+          features: [
+        "Automazione che ti fa risparmiare 20h/settimana",
+        "Dashboard che monitora tutto in tempo reale",
+        "Sistema permessi enterprise-grade",
+        "Database scalabile e sicuro",
+        "API che si integra con tutto",
+        "Cloud hosting con 99.9% uptime",
+        "Pronto in 4-6 settimane chiavi in mano"
+      ],
     highlight: true,
-    buttonText: "Inizia il progetto"
+    buttonText: "Scelgo questo"
   },
   {
     title: "App Mobile",
     price: "€2,000",
     period: "a partire da",
-    description: "App native per iOS e Android che portano la tua azienda direttamente nelle mani dei clienti",
-    features: [
-      "App nativa iOS e Android",
-      "Design UX/UI professionale",
-      "Integrazione API",
-      "Push notifications",
-      "Analytics integrati",
-      "Pubblicazione su store",
-      "Tempi di consegna: 6-8 settimane"
-    ],
+    description: "Raggiungi milioni di utenti mobile e crea un canale di vendita sempre attivo",
+          features: [
+        "App che funziona su iPhone e Android",
+        "Design che users adorano (UI/UX premium)",
+        "Sincronizzata con tutti i tuoi sistemi",
+        "Notifiche che riportano clienti",
+        "Analytics per decisioni data-driven",
+        "Pubblicazione App Store/Play Store inclusa",
+        "App store-ready in 6-8 settimane"
+      ],
     highlight: false,
-    buttonText: "Discutiamone"
+    buttonText: "Voglio saperne di più"
   },
   {
     title: "RAG e AI Automazioni",
     price: "€2,500",
     period: "a partire da",
-    description: "Soluzioni AI avanzate per automatizzare processi e migliorare l'efficienza aziendale",
-    features: [
-      "Chatbot intelligenti personalizzati",
-      "Automazione processi aziendali",
-      "Analisi dati con AI",
-      "Integrazione documenti RAG",
-      "Training modelli custom",
-      "Supporto tecnico dedicato",
-      "Tempi di consegna: 8-12 settimane"
-    ],
+    description: "Rivoluziona il business con l'AI: risparmia ore di lavoro e aumenta fatturato del 300%",
+          features: [
+        "Chatbot che gestisce il 90% delle richieste",
+        "Automazione intelligente che elimina task ripetitivi",
+        "AI che analizza dati e predice trends",
+        "Sistema RAG che conosce tutto della tua azienda",
+        "Modelli AI addestrati sui tuoi dati specifici",
+        "Supporto tech H24 con esperti AI",
+        "Sistema AI operativo in 8-12 settimane"
+      ],
     highlight: false,
-    buttonText: "Consulenza gratuita"
+    buttonText: "Chiamata strategica gratuita"
+  }
+] as const;
+
+export const REVIEWS = [
+  {
+    name: "Marco Mancio",
+    company: "Mancio Corporate Ltd",
+    role: "CEO",
+    image: "/reviews/marco-mancio.jpg",
+    rating: 4.5,
+    text: "La piattaforma e-commerce ha rivoluzionato il nostro modo di vendere online. Gestione ordini automatizzata e dashboard analytics che ci permettono di prendere decisioni data-driven ogni giorno.",
+    project: "Piattaforma E-commerce Avanzata",
+    result: "+180% vendite online"
+  },
+  {
+    name: "Team Compario",
+    company: "Compario",
+    role: "Product Team",
+    image: "/reviews/compario-team.jpg", 
+    rating: 5,
+    text: "Web app eccellente che gestisce migliaia di confronti al giorno. Interfaccia intuitiva, performance ottimali e backend scalabile. Exactly what we needed!",
+    project: "Web App Comparazione Servizi",
+    result: "10,000+ confronti/giorno"
+  },
+  {
+    name: "Alessandro Rossi",
+    company: "XYZ Consulting",
+    role: "Managing Director",
+    image: "/reviews/alessandro-rossi.jpg",
+    rating: 4.5,
+    text: "Sito web professionale che ci ha posizionato come leader nel settore. Design pulito, SEO ottimizzato e sistema di lead generation che funziona davvero.",
+    project: "Sito Web Corporate + SEO",
+    result: "3x lead qualificati"
+  },
+  {
+    name: "Adriano Montanari",
+    company: "Studio Consulenza Adrianmo",
+    role: "Senior Partner",
+    image: "/reviews/adriano-montanari.jpg",
+    rating: 5,
+    text: "Il sistema RAG con AI ha trasformato completamente il nostro workflow. Ora possiamo analizzare migliaia di documenti in pochi secondi e fornire consulenze più precise ai clienti.",
+    project: "Sistema RAG + AI Consulting",
+    result: "90% tempo risparmiato"
   }
 ] as const;
