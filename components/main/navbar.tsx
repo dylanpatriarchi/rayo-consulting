@@ -1,6 +1,5 @@
 'use client';
 import { useState } from "react";
-import Image from "next/image";
 import Link from "next/link";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 
@@ -12,25 +11,10 @@ export const Navbar = () => {
   return (
     <div className="w-full h-[60px] sm:h-[65px] md:h-[70px] fixed top-0 shadow-lg shadow-[#2A0E61]/50 bg-[#03001427] backdrop-blur-md z-50 px-3 sm:px-4 md:px-6 lg:px-8 xl:px-10">
       {/* Navbar Container */}
-      <div className="w-full h-full flex items-center justify-between max-w-7xl mx-auto">
-        {/* Logo + Name */}
-        <Link
-          href="#about-me"
-          className="flex items-center"
-        >
-          <Image
-            src="/logo.svg"
-            alt="Logo Rayo Consulting"
-            width={70}
-            height={70}
-            draggable={false}
-            className="cursor-pointer hover:scale-110 transition-transform duration-300 w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 lg:w-16 lg:h-16 xl:w-[70px] xl:h-[70px]"
-          />
-        </Link>
-
+      <div className="w-full h-full flex items-center justify-center max-w-7xl mx-auto">
         {/* Web Navbar */}
-        <div className="hidden lg:flex flex-1 max-w-lg h-full flex-row items-center justify-center">
-          <div className="flex items-center justify-between w-full h-auto border border-[rgba(112,66,248,0.38)] bg-[rgba(3,0,20,0.37)] px-4 xl:px-[20px] py-2 xl:py-[10px] rounded-full text-gray-200 gap-4 xl:gap-6 backdrop-blur-sm">
+        <div className="hidden lg:flex h-full flex-row items-center justify-center">
+          <div className="flex items-center justify-between h-auto border border-[rgba(112,66,248,0.38)] bg-[rgba(3,0,20,0.37)] px-4 xl:px-[20px] py-2 xl:py-[10px] rounded-full text-gray-200 gap-4 xl:gap-6 backdrop-blur-sm">
             {NAV_LINKS.map((link) => (
               <Link
                 key={link.title}
@@ -43,8 +27,8 @@ export const Navbar = () => {
           </div>
         </div>
 
-        {/* Social Icons (Web) */}
-        <div className="hidden lg:flex flex-row gap-3 xl:gap-5">
+        {/* Social Icons (Web) - Positioned absolute right */}
+        <div className="hidden lg:flex absolute right-4 xl:right-8 flex-row gap-3 xl:gap-5">
           {SOCIALS.map(({ link, name, icon: Icon }) => (
             <Link
               href={link}

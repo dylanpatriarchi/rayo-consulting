@@ -3,8 +3,6 @@ import {
   RxDiscordLogo,
   RxGithubLogo,
   RxInstagramLogo,
-  RxTwitterLogo,
-  RxLinkedinLogo,
 } from "react-icons/rx";
 
 export const SKILL_DATA = [
@@ -299,11 +297,6 @@ export const FOOTER_DATA = [
         name: "Instagram",
         icon: RxInstagramLogo,
         link: "https://instagram.com/rayo.consulting",
-      },
-      {
-        name: "LinkedIn",
-        icon: RxLinkedinLogo,
-        link: "https://linkedin.com/company/rayo-consulting",
       },
     ],
   },

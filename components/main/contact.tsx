@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import {
   MapPinIcon,
   AtSymbolIcon,
@@ -13,21 +13,42 @@ import {
 } from "@heroicons/react/24/outline";
 import { slideInFromTop, slideInFromLeft, slideInFromRight } from "@/lib/motion";
 
+interface Message {
+  id: number;
+  text: string;
+  isBot: boolean;
+  timestamp: string;
+}
+
 export const Contact = () => {
   const [message, setMessage] = useState("");
-  const [messages, setMessages] = useState([
+  const [contactId, setContactId] = useState("");
+  const [isNameSet, setIsNameSet] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [messages, setMessages] = useState<Message[]>([
     {
       id: 1,
-      text: "Ciao! 👋 Sono l'assistente di Rayo Consulting. Come posso aiutarti con il tuo progetto?",
+      text: "Ciao! 👋 Prima di iniziare, potresti dirmi il tuo nome?",
       isBot: true,
       timestamp: new Date().toLocaleTimeString('it-IT', { hour: '2-digit', minute: '2-digit' })
     }
   ]);
+  const messagesContainerRef = useRef<HTMLDivElement>(null);
 
-  const handleSendMessage = () => {
+  // Auto-scroll all'ultimo messaggio
+  useEffect(() => {
+    if (messagesContainerRef.current) {
+      messagesContainerRef.current.scrollTop = messagesContainerRef.current.scrollHeight;
+    }
+  }, [messages]);
+
+  const handleSetName = () => {
     if (message.trim()) {
-      // Aggiungi messaggio utente
-      const userMessage = {
+      setContactId(message.trim());
+      setIsNameSet(true);
+      
+      // Aggiungi messaggio utente con il nome
+      const userMessage: Message = {
         id: messages.length + 1,
         text: message,
         isBot: false,
@@ -37,16 +58,102 @@ export const Contact = () => {
       setMessages(prev => [...prev, userMessage]);
       setMessage("");
 
-      // Simula risposta bot dopo 1 secondo
+      // Messaggio di benvenuto
       setTimeout(() => {
-        const botResponse = {
+        const welcomeMessage: Message = {
           id: messages.length + 2,
-          text: "Grazie per il tuo messaggio! Un nostro consulente ti contatterà entro 5 minuti per discutere nel dettaglio le tue esigenze. Nel frattempo, puoi dirmi che tipo di progetto hai in mente?",
+          text: `Ciao ${message}! 🎉 Sono l'assistente di Rayo Consulting. Come posso aiutarti con il tuo progetto?`,
           isBot: true,
           timestamp: new Date().toLocaleTimeString('it-IT', { hour: '2-digit', minute: '2-digit' })
         };
-        setMessages(prev => [...prev, botResponse]);
-      }, 1000);
+        setMessages(prev => [...prev, welcomeMessage]);
+      }, 500);
+    }
+  };
+
+  const handleSendMessage = async () => {
+    if (message.trim() && contactId) {
+      setIsLoading(true);
+      
+      // Aggiungi messaggio utente
+      const userMessage: Message = {
+        id: messages.length + 1,
+        text: message,
+        isBot: false,
+        timestamp: new Date().toLocaleTimeString('it-IT', { hour: '2-digit', minute: '2-digit' })
+      };
+      
+      setMessages(prev => [...prev, userMessage]);
+      const currentMessage = message;
+      setMessage("");
+
+      try {
+        // Chiamata POST al webhook
+        const response = await fetch('https://dylanpatriarchi.app.n8n.cloud/webhook/chat', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            userInput: currentMessage,
+            contactId: contactId
+          })
+        });
+
+        if (response.ok) {
+          const data = await response.json();
+          
+          // Estrai il messaggio dalla risposta JSON
+          let responseMessage = "Grazie per il tuo messaggio! Ti risponderemo al più presto.";
+          if (data && Array.isArray(data) && data.length > 0 && data[0].output) {
+            responseMessage = data[0].output;
+          }
+          
+          // Aggiungi risposta dal webhook
+          const botResponse: Message = {
+            id: messages.length + 2,
+            text: responseMessage,
+            isBot: true,
+            timestamp: new Date().toLocaleTimeString('it-IT', { hour: '2-digit', minute: '2-digit' })
+          };
+          setMessages(prev => [...prev, botResponse]);
+        } else {
+          throw new Error('Errore nella risposta del server');
+        }
+      } catch (error) {
+        console.error('Errore nell\'invio del messaggio:', error);
+        
+        // Messaggio di errore
+        const errorMessage: Message = {
+          id: messages.length + 2,
+          text: "Si è verificato un errore nell'invio del messaggio. Riprova tra qualche istante.",
+          isBot: true,
+          timestamp: new Date().toLocaleTimeString('it-IT', { hour: '2-digit', minute: '2-digit' })
+        };
+        setMessages(prev => [...prev, errorMessage]);
+      } finally {
+        setIsLoading(false);
+      }
+    }
+  };
+
+  const handleKeyPress = (e: React.KeyboardEvent) => {
+    if (e.key === 'Enter' && !isLoading) {
+      if (!isNameSet) {
+        handleSetName();
+      } else {
+        handleSendMessage();
+      }
+    }
+  };
+
+  const handleButtonClick = () => {
+    if (!isLoading) {
+      if (!isNameSet) {
+        handleSetName();
+      } else {
+        handleSendMessage();
+      }
     }
   };
 
@@ -84,13 +191,18 @@ export const Contact = () => {
                   <h3 className="text-xl font-bold text-white">Assistente Rayo</h3>
                   <div className="text-green-400 text-sm flex items-center">
                     <div className="w-2 h-2 bg-green-400 rounded-full mr-2 animate-pulse"></div>
-                    Online ora • Risposta in 30 secondi
+                    Online ora • Risposta in tempo reale
                   </div>
                 </div>
+                {isNameSet && (
+                  <div className="ml-auto">
+                    <span className="text-sm text-gray-400">Ciao, {contactId}!</span>
+                  </div>
+                )}
               </div>
 
               {/* Messages Area */}
-              <div className="h-64 sm:h-80 overflow-y-auto mb-4 space-y-4 scrollbar-hidden">
+              <div ref={messagesContainerRef} className="h-64 sm:h-80 overflow-y-auto mb-4 space-y-4 scrollbar-hidden">
                 {messages.map((msg) => (
                   <div
                     key={msg.id}
@@ -108,6 +220,17 @@ export const Contact = () => {
                     </div>
                   </div>
                 ))}
+                {isLoading && (
+                  <div className="flex justify-start">
+                    <div className="bg-gray-700/50 text-gray-200 p-3 rounded-2xl rounded-bl-sm">
+                      <div className="flex items-center space-x-1">
+                        <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"></div>
+                        <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{animationDelay: '0.1s'}}></div>
+                        <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{animationDelay: '0.2s'}}></div>
+                      </div>
+                    </div>
+                  </div>
+                )}
               </div>
 
               {/* Input Area */}
@@ -117,23 +240,28 @@ export const Contact = () => {
                     type="text"
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
-                    placeholder="Scrivi il tuo messaggio..."
-                    className="flex-1 bg-gray-800/50 text-white text-sm px-4 py-3 rounded-2xl border border-gray-600 focus:border-purple-500 focus:outline-none"
-                    onKeyPress={(e) => {
-                      if (e.key === 'Enter') {
-                        handleSendMessage();
-                      }
-                    }}
+                    placeholder={!isNameSet ? "Scrivi il tuo nome..." : "Scrivi il tuo messaggio..."}
+                    className="flex-1 bg-gray-800/50 text-white text-sm px-4 py-3 rounded-2xl border border-gray-600 focus:border-purple-500 focus:outline-none disabled:opacity-50"
+                    onKeyPress={handleKeyPress}
+                    disabled={isLoading}
                   />
                   <button
-                    onClick={handleSendMessage}
-                    className="bg-gradient-to-r from-purple-500 to-cyan-500 text-white p-3 rounded-2xl hover:scale-110 transition-all duration-300"
+                    onClick={handleButtonClick}
+                    disabled={isLoading}
+                    className="bg-gradient-to-r from-purple-500 to-cyan-500 text-white p-3 rounded-2xl hover:scale-110 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
                   >
-                    <PaperAirplaneIcon className="h-4 w-4" />
+                    {isLoading ? (
+                      <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                    ) : (
+                      <PaperAirplaneIcon className="h-4 w-4" />
+                    )}
                   </button>
                 </div>
                 <p className="text-xs text-gray-400 mt-2 text-center">
-                  Il nostro team risponde personalmente entro 5 minuti 🚀
+                  {!isNameSet 
+                    ? "Inizia inserendo il tuo nome per continuare" 
+                    : "Il nostro team risponde personalmente in tempo reale 🚀"
+                  }
                 </p>
               </div>
             </div>
