@@ -82,10 +82,10 @@ export const Contact = () => {
                 </div>
                 <div>
                   <h3 className="text-xl font-bold text-white">Assistente Rayo</h3>
-                  <p className="text-green-400 text-sm flex items-center">
+                  <div className="text-green-400 text-sm flex items-center">
                     <div className="w-2 h-2 bg-green-400 rounded-full mr-2 animate-pulse"></div>
                     Online ora • Risposta in 30 secondi
-                  </p>
+                  </div>
                 </div>
               </div>
 

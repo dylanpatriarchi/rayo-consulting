@@ -213,12 +213,14 @@ export const Footer = () => {
               
               <div className="flex items-center gap-2 text-xs text-gray-500">
                 <span>Fatto con</span>
-                <motion.div
-                  animate={{ scale: [1, 1.2, 1] }}
-                  transition={{ duration: 1, repeat: Infinity, repeatDelay: 2 }}
-                >
-                  <HeartIcon className="h-4 w-4 text-red-400" />
-                </motion.div>
+                <span className="inline-block">
+                  <motion.div
+                    animate={{ scale: [1, 1.2, 1] }}
+                    transition={{ duration: 1, repeat: Infinity, repeatDelay: 2 }}
+                  >
+                    <HeartIcon className="h-4 w-4 text-red-400" />
+                  </motion.div>
+                </span>
                 <span>e tecnologia all'avanguardia</span>
               </div>
             </div>

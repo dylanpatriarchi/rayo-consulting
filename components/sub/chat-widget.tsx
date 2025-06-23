@@ -65,10 +65,10 @@ export const ChatWidget = () => {
             </div>
             <div className="ml-3">
               <h3 className="text-white font-semibold text-sm">Assistente Rayo</h3>
-              <p className="text-green-400 text-xs flex items-center">
+              <div className="text-green-400 text-xs flex items-center">
                 <div className="w-2 h-2 bg-green-400 rounded-full mr-2 animate-pulse"></div>
                 Online ora
-              </p>
+              </div>
             </div>
           </div>
         </div>
