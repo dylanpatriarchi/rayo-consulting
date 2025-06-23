@@ -58,12 +58,12 @@ export const metadata: Metadata = {
     google: process.env.GOOGLE_SITE_VERIFICATION,
   },
   alternates: {
-    canonical: "https://rayoconsulting.org",
+    canonical: "https://rayo.consulting",
   },
   openGraph: {
     type: "website",
     locale: "it_IT",
-    url: "https://rayoconsulting.org",
+    url: "https://rayo.consulting",
     siteName: "Rayo Consulting",
     title: "Rayo Consulting | Sviluppo Web e App Mobile a Città di Castello",
     description: "🚀 Trasformiamo le tue idee in successi digitali. Siti web performanti, app mobile native e automazioni AI per far crescere il tuo business.",

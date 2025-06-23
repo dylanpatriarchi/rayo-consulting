@@ -6,8 +6,8 @@ export const StructuredData = () => {
     "@type": "Organization",
     "name": "Rayo Consulting",
     "legalName": "Rayo Consulting di Patriarchi Dylan",
-    "url": "https://rayoconsulting.org",
-    "logo": "https://rayoconsulting.org/logo.svg",
+    "url": "https://rayo.consulting",
+    "logo": "https://rayo.consulting/logo.svg",
     "foundingDate": "2024",
     "founders": [
       {
@@ -47,7 +47,7 @@ export const StructuredData = () => {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
     "name": "Rayo Consulting",
-    "image": "https://rayoconsulting.org/logo.svg",
+    "image": "https://rayo.consulting/logo.svg",
     "telephone": "info@rayoconsulting.org",
     "email": "info@rayoconsulting.org",
     "address": {
@@ -63,7 +63,7 @@ export const StructuredData = () => {
       "latitude": 43.4563,
       "longitude": 12.2397
     },
-    "url": "https://rayoconsulting.org",
+    "url": "https://rayo.consulting",
     "priceRange": "€€",
     "openingHours": "Mo-Fr 09:00-18:00",
     "description": "Agenzia di sviluppo web e consulenza tecnologica specializzata in siti web, app mobile e automazioni AI a Città di Castello.",
@@ -78,7 +78,7 @@ export const StructuredData = () => {
     "@context": "https://schema.org",
     "@type": "WebSite",
     "name": "Rayo Consulting",
-    "url": "https://rayoconsulting.org",
+    "url": "https://rayo.consulting",
     "description": "Sviluppo web, app mobile e automazioni AI per far crescere il tuo business",
     "publisher": {
       "@type": "Organization",
@@ -86,7 +86,7 @@ export const StructuredData = () => {
     },
     "potentialAction": {
       "@type": "SearchAction",
-      "target": "https://rayoconsulting.org/#contatti?q={search_term_string}",
+      "target": "https://rayo.consulting/#contatti?q={search_term_string}",
       "query-input": "required name=search_term_string"
     }
   }

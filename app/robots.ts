@@ -7,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: '/',
       disallow: ['/api/', '/_next/'],
     },
-    sitemap: 'https://rayoconsulting.org/sitemap.xml',
+    sitemap: 'https://rayo.consulting/sitemap.xml',
   }
 } 
