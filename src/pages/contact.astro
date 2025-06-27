@@ -1,0 +1,20 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Contact from "@/components/forms/Contact.astro";
+import { type AstroSeoProps } from "@astrolib/seo";
+
+const seo: AstroSeoProps = {
+	title: "Contatti Rayo Consulting | Sviluppo Web e App Mobile a Città di Castello",
+	description: "Contatta Rayo Consulting per sviluppo web, app mobile e soluzioni AI. Email: info@rayoconsulting.org | Instagram: @rayo.consulting | Città di Castello, Italia",
+	canonical: "https://rayo.consulting/contact/",
+	openGraph: {
+		title: "Contatti Rayo Consulting | Sviluppo Web e App Mobile",
+		description: "Hai un progetto in mente? Contattaci per una consulenza gratuita. Sviluppiamo siti web, app mobile e soluzioni AI innovative.",
+		url: "https://rayo.consulting/contact/",
+	},
+};
+---
+
+<BaseLayout seo={seo}>
+	<Contact />
+</BaseLayout>

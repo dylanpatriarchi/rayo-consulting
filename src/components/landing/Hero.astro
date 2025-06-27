@@ -1,0 +1,137 @@
+---
+import LinkBlend from "@components/global/LinkBlend.astro";
+import { getLangFromUrl, useTranslations, useTranslatedPath } from "@i18n/utils";
+import backgroundVideo from "@assets/videos/background.mp4";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const translatePath = useTranslatedPath(lang);
+---
+
+<section id="hero" class="section dark-section hero min-h-screen relative overflow-hidden">
+	<!-- Video Background -->
+	<video 
+		class="absolute inset-0 w-full h-full object-cover z-0"
+		src={backgroundVideo}
+		autoplay 
+		loop 
+		muted 
+		playsinline
+	></video>
+	
+	<!-- Black Overlay -->
+	<div class="absolute inset-0 bg-black/60 z-10"></div>
+	
+	<div class="mx-auto flex h-full flex-col relative z-20">
+		<div class="relative flex flex-1 flex-col justify-center gap-8 rounded-lg py-10 pb-28 md:gap-20 md:pb-10 lg:rounded-2xl">
+			<div class="flex justify-center">
+				<h1 class="sr-only">Rayo Consulting</h1>
+				<div class="title-svg w-[min(90rem,90vw)] flex justify-center">
+					<h2 id="rayo-title" class="font-mono text-[8rem] font-bold uppercase tracking-widest text-white md:text-[12rem] lg:text-[16rem] xl:text-[20rem]">
+						RAYO
+					</h2>
+				</div>
+			</div>
+			<div class="flex flex-col items-center gap-5 text-center lg:gap-10">
+				<div class="flex flex-col items-center justify-center gap-3 lg:col-start-1">
+					<small>
+						( <span class="scroll-text">
+							<LinkBlend class="text-xs lg:text-lg" id="go-projects-button" isButton={true}>{t("hero.scroll")}</LinkBlend>
+						</span> )
+					</small>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<style>
+	.hero {
+		padding-bottom: 0;
+		position: relative;
+		border-radius: inherit;
+		overflow: hidden;
+	}
+	.hero > div {
+		grid-column: 1 / span 4;
+	}
+
+	#hero .title-svg {
+		opacity: 0;
+	}
+
+	#rayo-title {
+		/* Testo pulito senza effetti */
+	}
+
+	/* Hero appearance */
+	.hero h1,
+	.hero h2,
+	.hero h3 {
+		margin: 0;
+	}
+	.hero h1 {
+		margin: 0;
+		position: relative;
+		overflow: hidden;
+	}
+	.hero h1 > div {
+		position: relative;
+		margin: 0;
+	}
+	
+	/* Ensure video covers full screen */
+	video {
+		min-width: 100%;
+		min-height: 100%;
+	}
+</style>
+
+<script>
+	import { gsap } from "gsap";
+	import { ScrollTrigger } from "gsap/ScrollTrigger";
+	import { SplitText } from "gsap/SplitText";
+	import { ScrollToPlugin } from "gsap/ScrollToPlugin";
+
+	gsap.registerPlugin(ScrollTrigger, SplitText, ScrollToPlugin);
+
+	function init() {
+		var goProjectsButton = document.getElementById("go-projects-button");
+		goProjectsButton?.addEventListener("click", function () {
+			gsap.to(window, { duration: 0.5, scrollTo: "#projects" });
+		});
+
+		gsap.set("#hero .title-svg", { opacity: 1 });
+
+		// Animazione semplice del titolo RAYO
+		let rayoSplit = new SplitText("#rayo-title", { type: "chars" });
+		
+		gsap.timeline({
+			defaults: {
+				duration: 0.8,
+				ease: "power2.out",
+			},
+		}).from(rayoSplit.chars, {
+			y: 50,
+			opacity: 0,
+			stagger: 0.1
+		});
+
+		// Show scroll title from the middle
+		let split = new SplitText("#hero .scroll-text", { type: "chars" });
+		gsap.timeline({
+			defaults: {
+				duration: 0.3,
+			},
+		}).from(split.chars, {
+			opacity: 0,
+			stagger: {
+				from: "center",
+				each: 0.05,
+			},
+		});
+	}
+
+	document.removeEventListener("DOMContentLoaded", init);
+	document.addEventListener("DOMContentLoaded", init);
+</script>

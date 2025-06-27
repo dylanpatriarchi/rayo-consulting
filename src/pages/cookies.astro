@@ -1,0 +1,15 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import CookiesPage from "@/components/infopages/Cookies.astro";
+import { type AstroSeoProps } from "@astrolib/seo";
+
+const seo: AstroSeoProps = {
+	title: "Cookie Policy - Rayo Consulting",
+	description: "Learn about how Rayo Consulting uses cookies and similar technologies on our website.",
+	canonical: "https://rayo.consulting/cookies/",
+};
+---
+
+<BaseLayout seo={seo}>
+	<CookiesPage />
+</BaseLayout> 

@@ -1,0 +1,76 @@
+---
+import type { AstroSeoProps } from "@astrolib/seo";
+import BaseHead from "@components/BaseHead.astro";
+import BackgroundLines from "@components/global/BackgroundLines.astro";
+import Footer from "@components/global/Footer.astro";
+import Navigation from "@components/global/Navigation.astro";
+import CookieBanner from "@components/global/CookieBanner.astro";
+import { getLangFromUrl } from "../i18n/utils";
+
+type Props = {
+	seo?: AstroSeoProps;
+};
+
+const { seo: seoProp } = Astro.props;
+
+const lang = getLangFromUrl(Astro.url);
+
+// Immagine OpenGraph statica
+const ogImageUrl = new URL("/og-image.svg", Astro.site).toString();
+
+const defaultSeo: AstroSeoProps = {
+	title: "Rayo Consulting - Sviluppo Web, App Mobile e Soluzioni AI",
+	description:
+		"Rayo Consulting è specializzata in sviluppo web, applicazioni mobile e soluzioni AI. Trasformiamo le tue idee in realtà digitali innovative a Città di Castello, Italia.",
+	canonical: "https://rayo.consulting",
+	openGraph: {
+		url: "https://rayo.consulting",
+		title: "Rayo Consulting - Sviluppo Web, App Mobile e Soluzioni AI",
+		description:
+			"Rayo Consulting è specializzata in sviluppo web, applicazioni mobile e soluzioni AI. Trasformiamo le tue idee in realtà digitali innovative a Città di Castello, Italia.",
+		images: [
+			{
+				url: ogImageUrl,
+				width: 1200,
+				height: 630,
+				alt: "Rayo Consulting - Social Share",
+				type: "image/svg+xml",
+			},
+		],
+		site_name: "Rayo Consulting",
+	},
+	twitter: {
+		handle: "@rayo.consulting",
+		site: "@rayo.consulting",
+		cardType: "summary_large_image",
+	},
+	additionalMetaTags: [
+		{
+			name: "publisher",
+			content: "Patriarchi Dylan",
+		},
+		{
+			name: "author",
+			content: "Rayo Consulting",
+		},
+	],
+};
+
+const seo = {
+	...defaultSeo,
+	...seoProp,
+};
+---
+
+<html lang={lang}>
+	<head>
+		<BaseHead seo={seo} />
+	</head>
+	<body class="bg-black">
+		<Navigation />
+		<BackgroundLines />
+		<slot />
+		<Footer />
+		<CookieBanner />
+	</body>
+</html>

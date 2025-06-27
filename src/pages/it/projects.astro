@@ -1,0 +1,161 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { getCollection } from "astro:content";
+import { getLangFromUrl, useTranslations, useTranslatedPath } from "@i18n/utils";
+import Title from "@/components/global/Title.astro";
+import WokCard from "@/components/work/WokCard.astro";
+
+import { type AstroSeoProps } from "@astrolib/seo";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const translatePath = useTranslatedPath(lang);
+
+const seo: AstroSeoProps = {
+	title: "Progetti | Rayo Consulting",
+	description: "Scopri i nostri ultimi progetti: piattaforma di networking Konnekt, tool di comparazione prezzi Compario e prossime innovazioni.",
+	canonical: "https://rayo.consulting/it/projects/",
+};
+
+const allProjects = (await getCollection("projects"))
+	.filter((prj) => {
+		const [postLang, ...slug] = prj.slug.split("/");
+		return postLang === lang;
+	})
+	.map((prj) => {
+		const [postLang, slug] = prj.slug.split("/");
+		return {
+			...prj,
+			slug: slug,
+		};
+	})
+	.sort((a, b) => Number(a.data.order) - Number(b.data.order));
+---
+
+<BaseLayout seo={seo}>
+	<section class="section min-h-screen">
+		<div class="col-span-full">
+			<Title 
+				title={t("projects")} 
+				subtitle={lang === "it" ? "I nostri progetti più recenti" : "Our latest projects"} 
+				class="pt-20 pb-16 text-center" 
+			/>
+		</div>
+
+		<div class="col-span-full grid gap-16 md:gap-20">
+			{allProjects.map((project, index) => (
+				<div class="project-showcase grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center py-16 border-b border-gray-800 last:border-b-0">
+					<div class={`project-content ${index % 2 === 1 ? 'lg:order-2' : ''}`}>
+						<div class="mb-6">
+							<span class="text-sm font-mono text-gray-500 uppercase tracking-wider">
+								{String(index + 1).padStart(2, '0')}
+							</span>
+							<h2 class="text-4xl lg:text-5xl font-bold text-white mb-4 mt-2">
+								{project.data.title}
+							</h2>
+							<p class="text-xl text-gray-300 leading-relaxed">
+								{project.data.description}
+							</p>
+						</div>
+
+						<div class="flex items-center gap-6">
+							{project.data.link !== "#" ? (
+								<a 
+									href={project.data.link}
+									target="_blank"
+									rel="noopener noreferrer"
+									class="inline-flex items-center gap-2 bg-white hover:bg-gray-200 text-black font-mono font-bold px-6 py-3 transition-all duration-300 uppercase text-sm"
+								>
+									{lang === "it" ? "Visita Sito" : "Visit Site"}
+								</a>
+							) : (
+								<span class="inline-flex items-center gap-2 bg-gray-800 text-gray-400 font-mono font-bold px-6 py-3 cursor-not-allowed uppercase text-sm">
+									{lang === "it" ? "Prossimamente" : "Coming Soon"}
+								</span>
+							)}
+						</div>
+					</div>
+
+					<div class={`project-visual ${index % 2 === 1 ? 'lg:order-1' : ''}`}>
+						<div class="relative aspect-video bg-black border border-gray-700 overflow-hidden">
+							{project.data.video ? (
+								<video 
+									autoplay 
+									muted 
+									loop 
+									playsinline
+									class="w-full h-full object-cover"
+								>
+									<source src={project.data.video} type="video/webm" />
+								</video>
+							) : (
+								<div class="w-full h-full flex items-center justify-center">
+									<span class="text-6xl font-mono text-white/20">
+										{project.data.title.charAt(0)}
+									</span>
+								</div>
+							)}
+						</div>
+					</div>
+				</div>
+			))}
+		</div>
+
+		<!-- CTA Section -->
+		<div class="col-span-full mt-20 pt-16 border-t border-gray-800">
+			<div class="text-center max-w-3xl mx-auto">
+				<h2 class="text-3xl lg:text-4xl font-bold text-white mb-6">
+					{lang === "it" ? "Hai un progetto in mente?" : "Have a project in mind?"}
+				</h2>
+				<p class="text-lg text-gray-300 mb-8">
+					{lang === "it" 
+						? "Raccontaci la tua idea e trasformiamola insieme in realtà digitale."
+						: "Tell us your idea and let's transform it into digital reality together."
+					}
+				</p>
+				<a 
+					href={lang === "it" ? "/it/contact" : "/contact"}
+					class="inline-flex items-center gap-2 bg-white hover:bg-gray-200 text-black font-mono font-bold px-8 py-4 transition-all duration-300 uppercase text-sm"
+				>
+					{lang === "it" ? "Iniziamo" : "Let's Start"}
+				</a>
+			</div>
+		</div>
+	</section>
+</BaseLayout>
+
+<style>
+	.project-showcase {
+		opacity: 0;
+		transform: translateY(50px);
+	}
+</style>
+
+<script>
+	import { gsap } from "gsap";
+	import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+	gsap.registerPlugin(ScrollTrigger);
+
+	function init() {
+		const projectShowcases = gsap.utils.toArray(".project-showcase") as gsap.DOMTarget[];
+
+		projectShowcases.forEach((showcase, index) => {
+			gsap.to(showcase, {
+				opacity: 1,
+				y: 0,
+				duration: 0.8,
+				ease: "power2.out",
+				scrollTrigger: {
+					trigger: showcase,
+					start: "top 80%",
+					end: "bottom 20%",
+					toggleActions: "play none none reverse"
+				}
+			});
+		});
+	}
+
+	document.removeEventListener("DOMContentLoaded", init);
+	document.addEventListener("DOMContentLoaded", init);
+</script> 

@@ -1,0 +1,178 @@
+---
+import Title from "@/components/global/Title.astro";
+import { getLangFromUrl, useTranslations } from "@i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const services = [
+	{
+		title: lang === "it" ? "Siti Web" : "Websites",
+		price: "€750+",
+		description: lang === "it" 
+			? "Siti web moderni e responsive con React, Next.js e ottimizzazione SEO. Design personalizzato e performance ottimizzate."
+			: "Modern responsive websites with React, Next.js and SEO optimization. Custom design and optimized performance.",
+		features: lang === "it" 
+			? ["Design responsive", "Ottimizzazione SEO", "Performance elevate", "CMS integrato", "Analytics", "Supporto tecnico"]
+			: ["Responsive design", "SEO optimization", "High performance", "Integrated CMS", "Analytics", "Technical support"],
+		icon: "□"
+	},
+	{
+		title: lang === "it" ? "Web App" : "Web Apps", 
+		price: "€1,400+",
+		description: lang === "it"
+			? "Applicazioni web complesse con dashboard, e-commerce e automazioni business. Tecnologie moderne e scalabili."
+			: "Complex web applications with dashboards, e-commerce and business automation. Modern and scalable technologies.",
+		features: lang === "it"
+			? ["Dashboard personalizzate", "E-commerce", "Automazioni", "Database integrati", "API REST", "Sicurezza avanzata"]
+			: ["Custom dashboards", "E-commerce", "Automation", "Integrated databases", "REST APIs", "Advanced security"],
+		icon: "○"
+	},
+	{
+		title: lang === "it" ? "App Mobile" : "Mobile Apps",
+		price: "€2,000+", 
+		description: lang === "it"
+			? "App native per iOS e Android con React Native. Esperienza utente ottimizzata e integrazione con servizi cloud."
+			: "Native iOS and Android apps with React Native. Optimized user experience and cloud services integration.",
+		features: lang === "it"
+			? ["iOS e Android", "React Native", "Push notifications", "Integrazione cloud", "Offline support", "App Store deploy"]
+			: ["iOS and Android", "React Native", "Push notifications", "Cloud integration", "Offline support", "App Store deploy"],
+		icon: "△"
+	},
+	{
+		title: lang === "it" ? "AI & RAG" : "AI & RAG",
+		price: "€2,500+",
+		description: lang === "it"
+			? "Soluzioni AI avanzate con chatbot, automazioni intelligenti e analisi predittive. Integrazione con modelli LLM."
+			: "Advanced AI solutions with chatbots, intelligent automation and predictive analysis. LLM model integration.",
+		features: lang === "it"
+			? ["Chatbot AI", "Automazioni intelligenti", "Analisi predittive", "RAG systems", "LLM integration", "Machine Learning"]
+			: ["AI Chatbots", "Intelligent automation", "Predictive analysis", "RAG systems", "LLM integration", "Machine Learning"],
+		icon: "◇"
+	}
+];
+---
+
+<section class="section min-h-screen">
+	<div class="col-span-full">
+		<Title 
+			title={t("services.title")} 
+			subtitle={t("services.subtitle")} 
+			class="pt-20 pb-16 text-center" 
+		/>
+	</div>
+
+	<div class="col-span-full grid gap-12 md:gap-16">
+		{services.map((service, index) => (
+			<div class="service-card grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center py-16 border-b border-gray-800 last:border-b-0">
+				<div class={`service-content ${index % 2 === 1 ? 'lg:order-2' : ''}`}>
+					<div class="flex items-center gap-4 mb-6">
+						<span class="service-icon text-4xl font-mono text-white">{service.icon}</span>
+						<div>
+							<h3 class="text-3xl lg:text-4xl font-bold text-white mb-2">{service.title}</h3>
+							<span class="text-2xl font-mono text-white">{service.price}</span>
+						</div>
+					</div>
+					
+					<p class="text-lg text-gray-300 mb-8 leading-relaxed">
+						{service.description}
+					</p>
+
+					<div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+						{service.features.map((feature) => (
+							<div class="flex items-center gap-3">
+								<span class="w-2 h-2 bg-white rounded-full flex-shrink-0"></span>
+								<span class="text-gray-300">{feature}</span>
+							</div>
+						))}
+					</div>
+
+					<div class="mt-8">
+						<a 
+							href={lang === "it" ? "/it/contact" : "/contact"}
+							class="inline-flex items-center gap-2 bg-white hover:bg-gray-200 text-black font-mono font-bold px-8 py-4 transition-all duration-300 uppercase text-sm"
+						>
+							{lang === "it" ? "Richiedi Preventivo" : "Get Quote"}
+						</a>
+					</div>
+				</div>
+
+				<div class={`service-visual ${index % 2 === 1 ? 'lg:order-1' : ''}`}>
+					<div class="bg-black p-8 lg:p-12 border border-gray-700">
+						<div class="aspect-square flex items-center justify-center">
+							<span class="text-8xl lg:text-9xl font-mono text-white/20">{service.icon}</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		))}
+	</div>
+
+	<!-- CTA Section -->
+	<div class="col-span-full mt-20 pt-16 border-t border-gray-800">
+		<div class="text-center max-w-3xl mx-auto">
+			<h2 class="text-3xl lg:text-4xl font-bold text-white mb-6">
+				{lang === "it" ? "Pronto a iniziare il tuo progetto?" : "Ready to start your project?"}
+			</h2>
+			<p class="text-lg text-gray-300 mb-8">
+				{lang === "it" 
+					? "Contattaci per una consulenza gratuita e scopri come possiamo aiutarti a raggiungere i tuoi obiettivi digitali."
+					: "Contact us for a free consultation and discover how we can help you achieve your digital goals."
+				}
+			</p>
+			<div class="flex justify-center">
+				<a 
+					href={lang === "it" ? "/it/contact" : "/contact"}
+					class="inline-flex items-center gap-2 bg-white hover:bg-gray-200 text-black font-mono font-bold px-8 py-4 transition-all duration-300 uppercase text-sm"
+				>
+					{lang === "it" ? "Contattaci" : "Contact Us"}
+				</a>
+			</div>
+		</div>
+	</div>
+</section>
+
+<style>
+	.service-card {
+		opacity: 0;
+		transform: translateY(50px);
+	}
+	
+	.service-icon {
+		transform: rotate(0deg);
+		transition: transform 0.3s ease;
+	}
+	
+	.service-card:hover .service-icon {
+		transform: rotate(15deg);
+	}
+</style>
+
+<script>
+	import { gsap } from "gsap";
+	import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+	gsap.registerPlugin(ScrollTrigger);
+
+	function init() {
+		const serviceCards = gsap.utils.toArray(".service-card") as gsap.DOMTarget[];
+
+		serviceCards.forEach((card, index) => {
+			gsap.to(card, {
+				opacity: 1,
+				y: 0,
+				duration: 0.8,
+				ease: "power2.out",
+				scrollTrigger: {
+					trigger: card,
+					start: "top 80%",
+					end: "bottom 20%",
+					toggleActions: "play none none reverse"
+				}
+			});
+		});
+	}
+
+	document.removeEventListener("DOMContentLoaded", init);
+	document.addEventListener("DOMContentLoaded", init);
+</script>

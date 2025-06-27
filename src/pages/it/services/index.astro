@@ -1,0 +1,16 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import ServicesMain from "@/components/services/ServicesMain.astro";
+
+import { type AstroSeoProps } from "@astrolib/seo";
+
+const seo: AstroSeoProps = {
+	title: "Servizi | Rayo Consulting",
+	description: "Servizi professionali di sviluppo web: siti web, web app, app mobile e soluzioni AI a Città di Castello, Italia.",
+	canonical: "https://rayo.consulting/it/services/",
+};
+---
+
+<BaseLayout seo={seo}>
+	<ServicesMain />
+</BaseLayout>

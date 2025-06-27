@@ -1,0 +1,16 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import ThankYou from "@components/infopages/ThankYou.astro";
+import { type AstroSeoProps } from "@astrolib/seo";
+
+const seo: AstroSeoProps = {
+	title: "Grazie - Rayo Consulting: Email Inviata con Successo",
+	description:
+		"Grazie per averci contattato! La tua email è stata inviata con successo. Apprezziamo il tuo interesse e ti risponderemo al più presto.",
+	canonical: "https://rayo.consulting/thank-you/",
+};
+---
+
+<BaseLayout seo={seo}>
+	<ThankYou />
+</BaseLayout>

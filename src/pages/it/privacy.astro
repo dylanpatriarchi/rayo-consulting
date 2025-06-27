@@ -1,0 +1,16 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import PrivacyPage from "@/components/infopages/Privacy.astro";
+import { type AstroSeoProps } from "@astrolib/seo";
+
+const seo: AstroSeoProps = {
+	title: "Privacy Policy - Rayo Consulting: La tua privacy è importante",
+	description:
+		"La nostra Privacy Policy spiega come Rayo Consulting protegge le tue informazioni personali. Scopri il nostro impegno per la privacy e la sicurezza dei dati.",
+	canonical: "https://rayo.consulting/it/privacy/",
+};
+---
+
+<BaseLayout seo={seo}>
+	<PrivacyPage />
+</BaseLayout>

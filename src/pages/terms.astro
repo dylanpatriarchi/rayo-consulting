@@ -1,0 +1,16 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Terms from "@components/infopages/Terms.astro";
+import { type AstroSeoProps } from "@astrolib/seo";
+
+const seo: AstroSeoProps = {
+	title: "Termini di Servizio - Rayo Consulting: Comprendi i Nostri Termini",
+	description:
+		"Leggi i Termini di Servizio di Rayo Consulting. Scopri le nostre linee guida e le tue responsabilità quando utilizzi i nostri servizi di sviluppo web e soluzioni AI.",
+	canonical: "https://rayo.consulting/terms/",
+};
+---
+
+<BaseLayout seo={seo}>
+	<Terms />
+</BaseLayout>

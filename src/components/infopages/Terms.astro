@@ -1,0 +1,159 @@
+---
+import Title from "@components/global/Title.astro";
+import { getLangFromUrl, useTranslations, useTranslatedPath } from "@i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const translatePath = useTranslatedPath(lang);
+---
+
+<section>
+	<div class="mx-auto max-w-7xl px-8 py-12 md:px-12 lg:px-32 lg:py-32">
+		<div>
+			<Title 
+				title="Terms of Service" 
+				subtitle={lang === "it" ? "Ultimo aggiornamento: 01 Gennaio 2025" : "Last updated: January 01, 2025"} 
+				class="pb-10 pt-20 uppercase" 
+			/>
+		</div>
+		<div class="prose-styles mt-12 lg:mt-24">
+			{lang === "it" ? (
+				<>
+					<h2>1. Accettazione dei Termini</h2>
+					<p>
+						Utilizzando i servizi di Rayo Consulting, accetti integralmente i presenti Termini di Servizio. 
+						Se non accetti questi termini, non utilizzare i nostri servizi.
+					</p>
+
+					<h2>2. Chi Siamo</h2>
+					<p>
+						<strong>Rayo Consulting</strong> è un'azienda specializzata in sviluppo web, applicazioni mobile e soluzioni AI, 
+						con sede a Città di Castello, Italia (P.IVA: 03988190546).
+					</p>
+
+					<h2>3. I Nostri Servizi</h2>
+					<p>Offriamo i seguenti servizi:</p>
+					<ul>
+						<li>Sviluppo di siti web professionali</li>
+						<li>Creazione di applicazioni web e mobile</li>
+						<li>Soluzioni di intelligenza artificiale</li>
+						<li>Consulenza tecnica e strategica</li>
+					</ul>
+
+					<h2>4. Responsabilità del Cliente</h2>
+					<p>Il cliente si impegna a:</p>
+					<ul>
+						<li>Fornire informazioni accurate e complete</li>
+						<li>Rispettare i termini di pagamento concordati</li>
+						<li>Collaborare attivamente durante lo sviluppo</li>
+						<li>Non utilizzare i servizi per scopi illegali</li>
+					</ul>
+
+					<h2>5. Proprietà Intellettuale</h2>
+					<p>
+						Il codice sorgente e i materiali sviluppati rimangono di proprietà del cliente una volta completato il pagamento. 
+						Rayo Consulting mantiene i diritti sui framework e strumenti proprietari utilizzati.
+					</p>
+
+					<h2>6. Pagamenti e Rimborsi</h2>
+					<p>
+						I pagamenti sono dovuti secondo i termini concordati nel contratto specifico. 
+						I rimborsi sono valutati caso per caso in base alle circostanze del progetto.
+					</p>
+
+					<h2>7. Limitazione di Responsabilità</h2>
+					<p>
+						Rayo Consulting non è responsabile per danni indiretti, perdita di profitti o interruzioni di attività 
+						derivanti dall'uso dei nostri servizi.
+					</p>
+
+					<h2>8. Modifiche ai Termini</h2>
+					<p>
+						Ci riserviamo il diritto di modificare questi termini in qualsiasi momento. 
+						Le modifiche saranno comunicate tramite email o sul nostro sito web.
+					</p>
+
+					<h2>9. Legge Applicabile</h2>
+					<p>
+						Questi termini sono regolati dalla legge italiana. Qualsiasi controversia sarà risolta 
+						presso i tribunali competenti di Perugia, Italia.
+					</p>
+
+					<h2>10. Contatti</h2>
+					<p>
+						Per domande sui Termini di Servizio, contattaci all'indirizzo: 
+						<a href="mailto:info@rayoconsulting.org">info@rayoconsulting.org</a>
+					</p>
+				</>
+			) : (
+				<>
+					<h2>1. Acceptance of Terms</h2>
+					<p>
+						By using Rayo Consulting services, you fully accept these Terms of Service. 
+						If you do not accept these terms, do not use our services.
+					</p>
+
+					<h2>2. Who We Are</h2>
+					<p>
+						<strong>Rayo Consulting</strong> is a company specialized in web development, mobile applications, and AI solutions, 
+						based in Città di Castello, Italy (VAT: 03988190546).
+					</p>
+
+					<h2>3. Our Services</h2>
+					<p>We offer the following services:</p>
+					<ul>
+						<li>Professional website development</li>
+						<li>Web and mobile application creation</li>
+						<li>Artificial intelligence solutions</li>
+						<li>Technical and strategic consulting</li>
+					</ul>
+
+					<h2>4. Client Responsibilities</h2>
+					<p>The client agrees to:</p>
+					<ul>
+						<li>Provide accurate and complete information</li>
+						<li>Respect agreed payment terms</li>
+						<li>Actively collaborate during development</li>
+						<li>Not use services for illegal purposes</li>
+					</ul>
+
+					<h2>5. Intellectual Property</h2>
+					<p>
+						Source code and developed materials remain the client's property once payment is completed. 
+						Rayo Consulting retains rights to proprietary frameworks and tools used.
+					</p>
+
+					<h2>6. Payments and Refunds</h2>
+					<p>
+						Payments are due according to terms agreed in the specific contract. 
+						Refunds are evaluated case by case based on project circumstances.
+					</p>
+
+					<h2>7. Limitation of Liability</h2>
+					<p>
+						Rayo Consulting is not responsible for indirect damages, loss of profits, or business interruptions 
+						arising from the use of our services.
+					</p>
+
+					<h2>8. Changes to Terms</h2>
+					<p>
+						We reserve the right to modify these terms at any time. 
+						Changes will be communicated via email or on our website.
+					</p>
+
+					<h2>9. Applicable Law</h2>
+					<p>
+						These terms are governed by Italian law. Any disputes will be resolved 
+						in the competent courts of Perugia, Italy.
+					</p>
+
+					<h2>10. Contact</h2>
+					<p>
+						For questions about the Terms of Service, contact us at: 
+						<a href="mailto:info@rayoconsulting.org">info@rayoconsulting.org</a>
+					</p>
+				</>
+			)}
+		</div>
+	</div>
+</section>

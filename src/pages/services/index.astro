@@ -1,0 +1,21 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import ServicesMain from "@/components/services/ServicesMain.astro";
+
+import { type AstroSeoProps } from "@astrolib/seo";
+
+const seo: AstroSeoProps = {
+	title: "Servizi di Sviluppo Web e App Mobile | Rayo Consulting",
+	description: "Servizi professionali di sviluppo: siti web (€750+), web app (€1.400+), app mobile (€2.000+), soluzioni AI (€2.500+). React, Next.js, TypeScript, Node.js.",
+	canonical: "https://rayo.consulting/services/",
+	openGraph: {
+		title: "Servizi di Sviluppo Web e App Mobile | Rayo Consulting",
+		description: "Offriamo servizi completi di sviluppo digitale: siti web, applicazioni mobile, soluzioni AI. Tecnologie moderne, prezzi trasparenti.",
+		url: "https://rayo.consulting/services/",
+	},
+};
+---
+
+<BaseLayout seo={seo}>
+	<ServicesMain />
+</BaseLayout>
