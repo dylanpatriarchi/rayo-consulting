@@ -88,68 +88,69 @@ const translatePath = useTranslatedPath(lang);
 
 					<!-- Chat Content -->
 					<div class="p-6 h-96 flex flex-col justify-between relative">
-						<!-- Messages -->
-						<div class="space-y-4">
+						<!-- Messages Container -->
+						<div id="messages-container" class="flex-1 space-y-4 overflow-y-auto mb-4">
+							<!-- Initial Message -->
 							<div class="flex items-start gap-3">
 								<div class="w-8 h-8 border border-gray-600 flex items-center justify-center text-xs">RC</div>
 								<div class="bg-gray-800 p-3 max-w-xs">
 									<p class="text-sm">
 										{lang === "it" 
-											? "Ciao! Come posso aiutarti oggi?" 
-											: "Hello! How can I help you today?"
+											? "Ciao! Come ti chiami?" 
+											: "Hello! What's your name?"
 										}
 									</p>
 								</div>
 							</div>
 						</div>
 
-						<!-- Maintenance Overlay -->
-						<div class="absolute inset-0 bg-black/80 flex items-center justify-center backdrop-blur-sm">
-							<div class="text-center p-8">
-								<div class="w-16 h-16 border border-gray-600 flex items-center justify-center mx-auto mb-4">
-									<span class="text-2xl">🔧</span>
-								</div>
-								<h3 class="font-mono font-bold uppercase text-lg mb-2">
-									{lang === "it" ? "In Manutenzione" : "Under Maintenance"}
-								</h3>
-								<p class="text-gray-400 text-sm mb-4">
-									{lang === "it" 
-										? "La chat è attualmente in manutenzione e non può essere utilizzata."
-										: "Chat is currently under maintenance and cannot be used."
-									}
-								</p>
-								<p class="text-gray-500 text-xs">
-									{lang === "it" 
-										? "Contattaci via email per assistenza immediata."
-										: "Contact us via email for immediate assistance."
-									}
-								</p>
-							</div>
-						</div>
-
-						<!-- Chat Input (disabled) -->
-						<div class="flex gap-2 mt-4">
+						<!-- Name Input (initially visible) -->
+						<div id="name-input-container" class="flex gap-2">
 							<input 
+								id="name-input"
 								type="text" 
-								disabled
-								placeholder={lang === "it" ? "Scrivi un messaggio..." : "Type a message..."}
-								class="flex-1 p-3 bg-gray-800 border border-gray-700 text-gray-500 cursor-not-allowed opacity-50"
+								placeholder={lang === "it" ? "Il tuo nome..." : "Your name..."}
+								class="flex-1 p-3 bg-gray-800 border border-gray-700 text-white focus:border-white focus:outline-none"
 							>
 							<button 
-								disabled
-								class="px-6 py-3 border border-gray-700 font-mono font-bold uppercase text-sm text-gray-500 cursor-not-allowed opacity-50"
+								id="name-submit"
+								class="px-6 py-3 border border-gray-700 font-mono font-bold uppercase text-sm hover:border-white hover:bg-white hover:text-black transition-colors"
+							>
+								{lang === "it" ? "Conferma" : "Confirm"}
+							</button>
+						</div>
+
+						<!-- Chat Input (initially hidden) -->
+						<div id="chat-input-container" class="flex gap-2 hidden">
+							<input 
+								id="chat-input"
+								type="text" 
+								placeholder={lang === "it" ? "Scrivi un messaggio..." : "Type a message..."}
+								class="flex-1 p-3 bg-gray-800 border border-gray-700 text-white focus:border-white focus:outline-none"
+							>
+							<button 
+								id="chat-submit"
+								class="px-6 py-3 border border-gray-700 font-mono font-bold uppercase text-sm hover:border-white hover:bg-white hover:text-black transition-colors"
 							>
 								{lang === "it" ? "Invia" : "Send"}
 							</button>
+						</div>
+
+						<!-- Loading indicator -->
+						<div id="loading-indicator" class="hidden flex items-center gap-2 text-gray-400 text-sm">
+							<div class="w-2 h-2 bg-gray-400 rounded-full animate-bounce"></div>
+							<div class="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style="animation-delay: 0.1s"></div>
+							<div class="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style="animation-delay: 0.2s"></div>
+							<span>{lang === "it" ? "Digitando..." : "Typing..."}</span>
 						</div>
 					</div>
 				</div>
 
 				<!-- Chat Status -->
 				<div class="mt-4 flex items-center gap-2 text-sm text-gray-400">
-					<div class="w-2 h-2 bg-red-500 rounded-full"></div>
+					<div id="status-dot" class="w-2 h-2 bg-green-500 rounded-full"></div>
 					<span class="font-mono uppercase">
-						{lang === "it" ? "Offline - In Manutenzione" : "Offline - Under Maintenance"}
+						{lang === "it" ? "Online" : "Online"}
 					</span>
 				</div>
 			</div>
@@ -176,9 +177,199 @@ const translatePath = useTranslatedPath(lang);
 	</div>
 </section>
 
+<script>
+	document.addEventListener('DOMContentLoaded', function() {
+		const nameInput = document.getElementById('name-input') as HTMLInputElement;
+		const nameSubmit = document.getElementById('name-submit') as HTMLButtonElement;
+		const nameInputContainer = document.getElementById('name-input-container') as HTMLDivElement;
+		const chatInputContainer = document.getElementById('chat-input-container') as HTMLDivElement;
+		const chatInput = document.getElementById('chat-input') as HTMLInputElement;
+		const chatSubmit = document.getElementById('chat-submit') as HTMLButtonElement;
+		const messagesContainer = document.getElementById('messages-container') as HTMLDivElement;
+		const loadingIndicator = document.getElementById('loading-indicator') as HTMLDivElement;
+		
+		if (!nameInput || !nameSubmit || !nameInputContainer || !chatInputContainer || 
+		    !chatInput || !chatSubmit || !messagesContainer || !loadingIndicator) {
+			console.error('Missing required DOM elements for chat functionality');
+			return;
+		}
+		
+		let userName = '';
+		const isItalian = document.documentElement.lang === 'it';
+
+		// Format text content
+		function formatText(text: string): string {
+			// Escape HTML to prevent XSS
+			const escaped = text
+				.replace(/&/g, '&amp;')
+				.replace(/</g, '&lt;')
+				.replace(/>/g, '&gt;')
+				.replace(/"/g, '&quot;')
+				.replace(/'/g, '&#39;');
+			
+			// Replace newlines with HTML breaks
+			return escaped
+				.replace(/\\n/g, '<br>')
+				.replace(/\n/g, '<br>')
+				.replace(/\\r\\n/g, '<br>')
+				.replace(/\\r/g, '<br>');
+		}
+
+		// Add message to chat
+		function addMessage(content: string, isUser = false, isError = false) {
+			const messageDiv = document.createElement('div');
+			messageDiv.className = 'flex items-start gap-3';
+			
+			const formattedContent = formatText(content);
+			
+			if (isUser) {
+				messageDiv.className += ' justify-end';
+				messageDiv.innerHTML = `
+					<div class="bg-white text-black p-3 max-w-xs">
+						<div class="text-sm">${formattedContent}</div>
+					</div>
+					<div class="w-8 h-8 border border-gray-600 flex items-center justify-center text-xs">${userName.substring(0, 2).toUpperCase()}</div>
+				`;
+			} else {
+				messageDiv.innerHTML = `
+					<div class="w-8 h-8 border border-gray-600 flex items-center justify-center text-xs">RC</div>
+					<div class="bg-gray-800 p-3 max-w-xs ${isError ? 'border border-red-500' : ''}">
+						<div class="text-sm ${isError ? 'text-red-400' : ''}">${formattedContent}</div>
+					</div>
+				`;
+			}
+			
+			messagesContainer.appendChild(messageDiv);
+			messagesContainer.scrollTop = messagesContainer.scrollHeight;
+		}
+
+		// Show loading indicator
+		function showLoading() {
+			loadingIndicator.classList.remove('hidden');
+		}
+
+		// Hide loading indicator
+		function hideLoading() {
+			loadingIndicator.classList.add('hidden');
+		}
+
+		// Send message to webhook
+		async function sendMessage(userInput: string) {
+			showLoading();
+			
+			try {
+				const response = await fetch('https://dylanpatriarchi.app.n8n.cloud/webhook/chat', {
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json',
+					},
+					body: JSON.stringify({
+						contactId: userName,
+						userInput: userInput
+					})
+				});
+
+				if (!response.ok) {
+					throw new Error(`HTTP error! status: ${response.status}`);
+				}
+
+				const data = await response.json();
+				hideLoading();
+
+				// Handle response
+				if (data && data.length > 0 && data[0].output) {
+					addMessage(data[0].output);
+				} else {
+					addMessage(
+						isItalian 
+							? 'Mi dispiace, non ho ricevuto una risposta valida.' 
+							: 'Sorry, I didn\'t receive a valid response.',
+						false, 
+						true
+					);
+				}
+			} catch (error) {
+				console.error('Error sending message:', error);
+				hideLoading();
+				addMessage(
+					isItalian 
+						? 'Si è verificato un errore. Riprova più tardi.' 
+						: 'An error occurred. Please try again later.',
+					false, 
+					true
+				);
+			}
+		}
+
+		// Handle name submission
+		function handleNameSubmit() {
+			const name = nameInput.value.trim();
+			if (name) {
+				userName = name;
+				addMessage(name, true);
+				
+				// Switch to chat mode
+				nameInputContainer.classList.add('hidden');
+				chatInputContainer.classList.remove('hidden');
+				
+				// Add welcome message
+				setTimeout(() => {
+					addMessage(
+						isItalian 
+							? `Piacere di conoscerti, ${name}! Come posso aiutarti oggi?` 
+							: `Nice to meet you, ${name}! How can I help you today?`
+					);
+				}, 500);
+				
+				chatInput.focus();
+			}
+		}
+
+		// Handle chat message submission
+		function handleChatSubmit() {
+			const message = chatInput.value.trim();
+			if (message) {
+				addMessage(message, true);
+				chatInput.value = '';
+				sendMessage(message);
+			}
+		}
+
+		// Event listeners
+		nameSubmit.addEventListener('click', handleNameSubmit);
+		nameInput.addEventListener('keypress', function(e) {
+			if (e.key === 'Enter') {
+				handleNameSubmit();
+			}
+		});
+
+		chatSubmit.addEventListener('click', handleChatSubmit);
+		chatInput.addEventListener('keypress', function(e) {
+			if (e.key === 'Enter') {
+				handleChatSubmit();
+			}
+		});
+
+		// Focus on name input initially
+		nameInput.focus();
+	});
+</script>
+
 <style>
-	input:disabled,
-	button:disabled {
-		cursor: not-allowed !important;
+	#messages-container::-webkit-scrollbar {
+		width: 2px;
+	}
+	
+	#messages-container::-webkit-scrollbar-track {
+		background: transparent;
+	}
+	
+	#messages-container::-webkit-scrollbar-thumb {
+		background: #374151;
+		border-radius: 2px;
+	}
+	
+	#messages-container::-webkit-scrollbar-thumb:hover {
+		background: #6b7280;
 	}
 </style>
