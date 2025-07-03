@@ -100,6 +100,11 @@ export const ui = {
 		"coverage.title": "Geographic Coverage",
 		"coverage.subtitle": "We serve the entire Upper Tiber Valley and surrounding areas",
 		"coverage.description": "Our web agency operates mainly in Città di Castello and offers services throughout northern Umbria, including Umbertide, Gubbio, and the bordering areas of Tuscany such as Sansepolcro and Anghiari.",
+		"work.title": "Work with us",
+		"work.subtitle": "Join our team",
+		"work.message": "For spontaneous applications write to:",
+		"work.email": "info@rayo.consulting",
+		"work.nav": "Work",
 	},
 	it: {
 		or: "o",
@@ -194,6 +199,11 @@ export const ui = {
 		"coverage.title": "Copertura Geografica",
 		"coverage.subtitle": "Serviamo tutta l'Alta Valle del Tevere e zone limitrofe",
 		"coverage.description": "La nostra web agency opera principalmente a Città di Castello e offre servizi in tutta l'Umbria settentrionale, includendo Umbertide, Gubbio, e le zone confinanti della Toscana come Sansepolcro e Anghiari.",
+		"work.title": "Lavora con noi",
+		"work.subtitle": "Unisciti al nostro team",
+		"work.message": "Per candidature spontanee scrivi a:",
+		"work.email": "info@rayo.consulting",
+		"work.nav": "Lavora",
 	},
 } as const;
 

@@ -1,0 +1,93 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Title from "@/components/global/Title.astro";
+import { getLangFromUrl, useTranslations } from "@i18n/utils";
+import { type AstroSeoProps } from "@astrolib/seo";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const seo: AstroSeoProps = {
+	title: "Work with us - Rayo Consulting | Join our Team",
+	description: "Interested in joining our web development team? Get in touch with us to explore opportunities at Rayo Consulting.",
+	canonical: "https://rayo.consulting/work-with-us/",
+	openGraph: {
+		title: "Work with us - Rayo Consulting | Join our Team",
+		description: "Interested in joining our web development team? Get in touch with us to explore opportunities at Rayo Consulting.",
+		url: "https://rayo.consulting/work-with-us/",
+		site_name: "Rayo Consulting",
+		images: [
+			{
+				url: "https://rayo.consulting/og-image.svg",
+				width: 1200,
+				height: 630,
+				alt: "Work with us - Rayo Consulting",
+			},
+		],
+		locale: "en_US",
+		type: "website",
+	},
+};
+---
+
+<BaseLayout seo={seo}>
+	<section class="section min-h-screen">
+		<div class="col-span-full">
+			<Title 
+				title={t("work.title")} 
+				subtitle={t("work.subtitle")} 
+				class="pt-20 pb-16 text-center" 
+			/>
+		</div>
+
+		<div class="col-span-full">
+			<div class="max-w-4xl mx-auto text-center">
+				<div class="bg-black p-8 lg:p-16 border border-gray-700">
+					<div class="mb-8">
+						<span class="text-6xl lg:text-8xl font-mono text-white/20">✉</span>
+					</div>
+					
+					<p class="text-xl lg:text-2xl text-gray-300 mb-8">
+						{t("work.message")}
+					</p>
+					
+					<a 
+						href={`mailto:${t("work.email")}`}
+						class="inline-flex items-center gap-2 bg-white hover:bg-gray-200 text-black font-mono font-bold px-8 py-4 transition-all duration-300 uppercase text-sm lg:text-base"
+					>
+						{t("work.email")}
+					</a>
+				</div>
+			</div>
+		</div>
+
+		<!-- Additional info section -->
+		<div class="col-span-full mt-20 pt-16 border-t border-gray-800">
+			<div class="text-center max-w-3xl mx-auto">
+				<h2 class="text-2xl lg:text-3xl font-bold text-white mb-6">
+					Join our team
+				</h2>
+				<p class="text-lg text-gray-300 mb-8">
+					We're always interested in meeting talented developers, designers, and digital professionals who share our passion for creating innovative web solutions.
+				</p>
+				<div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+					<div>
+						<span class="text-3xl font-mono text-white mb-2 block">⚡</span>
+						<h3 class="text-white font-semibold mb-2">Fast-paced</h3>
+						<p class="text-gray-400 text-sm">Dynamic work environment</p>
+					</div>
+					<div>
+						<span class="text-3xl font-mono text-white mb-2 block">🚀</span>
+						<h3 class="text-white font-semibold mb-2">Innovative</h3>
+						<p class="text-gray-400 text-sm">Cutting-edge technologies</p>
+					</div>
+					<div>
+						<span class="text-3xl font-mono text-white mb-2 block">🎯</span>
+						<h3 class="text-white font-semibold mb-2">Goal-oriented</h3>
+						<p class="text-gray-400 text-sm">Results that matter</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</BaseLayout> 

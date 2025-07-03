@@ -32,6 +32,13 @@ let pages = [
 		url: "/services",
 	},
 	{
+		id: "work",
+		initialTitle: "W",
+		title: t("work.nav"),
+		class: "work",
+		url: "/work-with-us",
+	},
+	{
 		id: "contact",
 		initialTitle: "C",
 		title: t("contacts"),
@@ -138,6 +145,20 @@ const { pathname } = Astro.url;
 				},
 			});
 
+		const workScrambleTl = gsap
+			.timeline({
+				defaults: {
+					duration: 0.8,
+					ease: "power4.inOut",
+				},
+			})
+			.from("header .menu-item.work a", {
+				scrambleText: {
+					text: "W",
+					speed: 0.4,
+				},
+			});
+
 		const contactScrambleTl = gsap
 			.timeline({
 				defaults: {
@@ -161,7 +182,7 @@ const { pathname } = Astro.url;
 			})
 			.from("header .menu-item.language a", {
 				scrambleText: {
-					text: lang.toUpperCase(),
+					text: document.querySelector("header .menu-item.language a")?.textContent || "EN",
 					speed: 0.4,
 				},
 			});
@@ -171,6 +192,7 @@ const { pathname } = Astro.url;
 			.add(homeScrambleTl)
 			.add(projectsScrambleTl, "<=+0.2")
 			.add(servicesScrambleTl, "<=+0.2")
+			.add(workScrambleTl, "<=+0.2")
 			.add(contactScrambleTl, "<=+0.2")
 			.add(languageScrambleTl, "<=+0.2");
 
