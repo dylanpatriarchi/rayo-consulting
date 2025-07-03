@@ -24,7 +24,9 @@ export const ui = {
 		"hero.title.3": "mobile apps",
 		"hero.title.4": "AI solutions",
 		"hero.subtitle":
-			"Specializing in modern web development, mobile applications, and AI automation for businesses in Città di Castello and beyond",
+			"Specializing in modern web development, mobile applications, and AI automation for businesses in Città di Castello and the Upper Tiber Valley",
+		"hero.tagline":
+			"Digital solutions that drive real business growth. We transform ideas into powerful web applications, mobile apps, and AI automations.",
 		"hero.scroll": "scroll down to explore",
 		"websites.title": "Siti Web",
 		"apps.title": "Web App",
@@ -32,15 +34,15 @@ export const ui = {
 		"seo.title": "AI & RAG",
 		"advertising.title": "Consulenza",
 		"websites.content":
-			"Siti web professionali che convertono visitatori in clienti. Sviluppiamo con tecnologie moderne come React e Next.js per garantire prestazioni ottimali e SEO efficace.",
+			"Professional websites that convert visitors into customers. We develop with modern technologies like React and Next.js to ensure optimal performance and effective SEO. We serve companies in Città di Castello and throughout Umbria.",
 		"apps.content":
-			"Applicazioni web scalabili che automatizzano i tuoi processi aziendali. Creiamo dashboard intuitive, sistemi di gestione e piattaforme e-commerce su misura.",
+			"Scalable web applications that automate your business processes. We create intuitive dashboards, management systems, and custom e-commerce platforms for businesses in the Upper Tiber Valley and Valtiberina.",
 		"uiux.content":
-			"App mobile native per iOS e Android che offrono un'esperienza utente superiore. Sviluppiamo con React Native per garantire performance e compatibilità cross-platform.",
+			"Native mobile apps for iOS and Android that offer superior user experience. We develop with React Native to ensure performance and cross-platform compatibility for clients in Città di Castello and surrounding areas.",
 		"seo.content":
-			"Sistemi di intelligenza artificiale e RAG che rivoluzionano il tuo business. Chatbot intelligenti, automazioni AI e analisi predittiva per ottimizzare i processi.",
+			"Artificial intelligence and RAG systems that revolutionize your business. Smart chatbots, AI automations, and predictive analytics to optimize business processes in Umbria and Tuscany.",
 		"advertising.content":
-			"Consulenza strategica per la trasformazione digitale. Ti guidiamo nella scelta delle tecnologie migliori e nella pianificazione dello sviluppo software.",
+			"Strategic consulting for digital transformation. We guide you in choosing the best technologies and planning software development for companies in Città di Castello, Umbertide, Sansepolcro and surroundings.",
 		"privacy.wip": "Work in progress",
 		"privacy.wip.content": "This page will be updated soon",
 		"faqs.question1": "What's your creative process?",
@@ -93,7 +95,11 @@ export const ui = {
 		newsletter_subscribe: "Subscribe to our newsletter",
 
 		"services.title": "Services",
-		"services.subtitle": "Professional digital solutions for your business",
+		"services.subtitle": "Professional digital solutions for your business in the Upper Tiber Valley",
+		"services.tagline": "Professional Solutions",
+		"coverage.title": "Geographic Coverage",
+		"coverage.subtitle": "We serve the entire Upper Tiber Valley and surrounding areas",
+		"coverage.description": "Our web agency operates mainly in Città di Castello and offers services throughout northern Umbria, including Umbertide, Gubbio, and the bordering areas of Tuscany such as Sansepolcro and Anghiari.",
 	},
 	it: {
 		or: "o",
@@ -113,7 +119,9 @@ export const ui = {
 		"hero.title.3": "app mobile",
 		"hero.title.4": "soluzioni AI",
 		"hero.subtitle":
-			"Specializzati in sviluppo web moderno, applicazioni mobile e automazioni AI per aziende a Città di Castello e oltre",
+			"Specializzati in sviluppo web moderno, applicazioni mobile e automazioni AI per aziende a Città di Castello, Umbertide, Sansepolcro e tutta l'Alta Valle del Tevere",
+		"hero.tagline":
+			"Soluzioni digitali che generano crescita reale per il tuo business. Trasformiamo idee in potenti applicazioni web, app mobile e automazioni AI.",
 		"hero.scroll": "scorri per scoprire",
 		"websites.title": "Siti Web",
 		"apps.title": "Web App",
@@ -121,15 +129,15 @@ export const ui = {
 		"seo.title": "AI & RAG",
 		"advertising.title": "Consulenza",
 		"websites.content":
-			"Siti web professionali che convertono visitatori in clienti. Sviluppiamo con tecnologie moderne come React e Next.js per garantire prestazioni ottimali e SEO efficace.",
+			"Siti web professionali che convertono visitatori in clienti. Sviluppiamo con tecnologie moderne come React e Next.js per garantire prestazioni ottimali e SEO efficace. Serviamo aziende a Città di Castello e in tutta l'Umbria.",
 		"apps.content":
-			"Applicazioni web scalabili che automatizzano i tuoi processi aziendali. Creiamo dashboard intuitive, sistemi di gestione e piattaforme e-commerce su misura.",
+			"Applicazioni web scalabili che automatizzano i tuoi processi aziendali. Creiamo dashboard intuitive, sistemi di gestione e piattaforme e-commerce su misura per imprese dell'Alta Valle del Tevere e Valtiberina.",
 		"uiux.content":
-			"App mobile native per iOS e Android che offrono un'esperienza utente superiore. Sviluppiamo con React Native per garantire performance e compatibilità cross-platform.",
+			"App mobile native per iOS e Android che offrono un'esperienza utente superiore. Sviluppiamo con React Native per garantire performance e compatibilità cross-platform per clienti di Città di Castello e zone limitrofe.",
 		"seo.content":
-			"Sistemi di intelligenza artificiale e RAG che rivoluzionano il tuo business. Chatbot intelligenti, automazioni AI e analisi predittiva per ottimizzare i processi.",
+			"Sistemi di intelligenza artificiale e RAG che rivoluzionano il tuo business. Chatbot intelligenti, automazioni AI e analisi predittiva per ottimizzare i processi aziendali in Umbria e Toscana.",
 		"advertising.content":
-			"Consulenza strategica per la trasformazione digitale. Ti guidiamo nella scelta delle tecnologie migliori e nella pianificazione dello sviluppo software.",
+			"Consulenza strategica per la trasformazione digitale. Ti guidiamo nella scelta delle tecnologie migliori e nella pianificazione dello sviluppo software per aziende di Città di Castello, Umbertide, Sansepolcro e dintorni.",
 		"privacy.wip": "Lavori in corso",
 		"privacy.wip.content": "Questa pagina verrà aggiornata a breve",
 		"faqs.question1": "Qual è il vostro processo creativo?",
@@ -181,7 +189,11 @@ export const ui = {
 		newsletter_subscribe: "Iscriviti alla nostra newsletter",
 
 		"services.title": "Servizi",
-		"services.subtitle": "Soluzioni digitali professionali per il tuo business",
+		"services.subtitle": "Soluzioni digitali professionali per il tuo business nell'Alta Valle del Tevere",
+		"services.tagline": "Soluzioni Professionali",
+		"coverage.title": "Copertura Geografica",
+		"coverage.subtitle": "Serviamo tutta l'Alta Valle del Tevere e zone limitrofe",
+		"coverage.description": "La nostra web agency opera principalmente a Città di Castello e offre servizi in tutta l'Umbria settentrionale, includendo Umbertide, Gubbio, e le zone confinanti della Toscana come Sansepolcro e Anghiari.",
 	},
 } as const;
 

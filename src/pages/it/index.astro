@@ -3,15 +3,27 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
 import Hero from "@components/landing/Hero.astro";
 import Description from "@components/landing/Description.astro";
 import WorkPreview from "@components/landing/WorkPreview.astro";
+import Facts from "@components/landing/Facts.astro";
 
 const seo = {
-	title: "Rayo Consulting - Sviluppo Siti Web, App Mobile e Soluzioni AI | Città di Castello",
-	description: "Rayo Consulting sviluppa siti web professionali, applicazioni mobile e soluzioni AI a Città di Castello. React, Next.js, TypeScript. Prezzi da €750. Preventivo gratuito!",
+	title: "Rayo Consulting - Web Agency Città di Castello | Sviluppo Siti Web, App Mobile e AI",
+	description: "🚀 Web Agency #1 a Città di Castello! Sviluppiamo siti web professionali, app mobile e soluzioni AI innovative. React, Next.js, TypeScript. Preventivo gratuito in 24h - Prezzi da €750",
 	canonical: "https://rayo.consulting/it/",
 	openGraph: {
-		title: "Rayo Consulting - Sviluppo Web, App Mobile e Soluzioni AI",
-		description: "Agenzia di sviluppo digitale a Città di Castello. Creiamo siti web, app mobile e soluzioni AI innovative per far crescere il tuo business.",
+		title: "Rayo Consulting - Web Agency Città di Castello | Sviluppo Siti Web, App Mobile e AI", 
+		description: "🚀 La Web Agency di riferimento in Umbria! Specializziamo in sviluppo web, app mobile e soluzioni AI. Tecnologie moderne, risultati garantiti. Contattaci per un preventivo gratuito!",
 		url: "https://rayo.consulting/it/",
+		site_name: "Rayo Consulting",
+		images: [
+			{
+				url: "https://rayo.consulting/og-image.svg",
+				width: 1200,
+				height: 630,
+				alt: "Rayo Consulting - Web Agency Città di Castello",
+			},
+		],
+		locale: "it_IT",
+		type: "website",
 	},
 };
 ---
@@ -19,5 +31,6 @@ const seo = {
 <BaseLayout seo={seo}>
 	<Hero />
 	<Description />
+	<Facts class="bg-gray-800" />
 	<WorkPreview class="pb-80 sm:pb-40" />
 </BaseLayout>

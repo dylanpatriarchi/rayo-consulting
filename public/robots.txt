@@ -3,9 +3,22 @@ Allow: /
 Disallow: /admin/
 Disallow: /*.json$
 Disallow: /api/
+Disallow: /private/
 
 # Crawl-delay for respectful crawling
 Crawl-delay: 1
 
+# Specific directives for major search engines
+User-agent: Googlebot
+Crawl-delay: 1
+
+User-agent: Bingbot
+Crawl-delay: 1
+
 # Sitemap
 Sitemap: https://rayo.consulting/sitemap-index.xml
+
+# Additional metadata
+# Website: https://rayo.consulting
+# Contact: info@rayo.consulting
+# Location: Città di Castello, Umbria, Italy

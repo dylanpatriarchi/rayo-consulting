@@ -5,9 +5,25 @@ import ServicesMain from "@/components/services/ServicesMain.astro";
 import { type AstroSeoProps } from "@astrolib/seo";
 
 const seo: AstroSeoProps = {
-	title: "Servizi | Rayo Consulting",
-	description: "Servizi professionali di sviluppo web: siti web, web app, app mobile e soluzioni AI a Città di Castello, Italia.",
+	title: "Servizi Web Agency Città di Castello | Sviluppo Siti Web, App Mobile, AI - Rayo Consulting",
+	description: "🎯 Servizi completi di sviluppo digitale a Città di Castello: Siti Web (€750+), Web App (€1.400+), App Mobile (€2.000+), Soluzioni AI (€2.500+). React, Next.js, TypeScript. Preventivo gratuito!",
 	canonical: "https://rayo.consulting/it/services/",
+	openGraph: {
+		title: "Servizi Web Agency Città di Castello | Sviluppo Siti Web, App Mobile, AI",
+		description: "🎯 Servizi professionali di sviluppo digitale in Umbria. Specializzati in siti web, applicazioni mobile e soluzioni AI. Tecnologie moderne, prezzi trasparenti, risultati garantiti.",
+		url: "https://rayo.consulting/it/services/",
+		site_name: "Rayo Consulting",
+		images: [
+			{
+				url: "https://rayo.consulting/og-image.svg",
+				width: 1200,
+				height: 630,
+				alt: "Servizi Web Agency Città di Castello - Rayo Consulting",
+			},
+		],
+		locale: "it_IT",
+		type: "website",
+	},
 };
 ---
 
