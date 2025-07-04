@@ -11,10 +11,10 @@ const translatePath = useTranslatedPath(lang);
 <!-- The best thing? It's all in one -->
 <div id="rayo-motto" class:list={["section motto-section gap-y-20 py-20 text-xl md:text-2xl", className]}>
 	<div class="col-span-full text-center">
-		<h2 id="scramble-text-subtitle" class="font-mono text-base font-bold uppercase tracking-wider text-white">
+		<h2 id="animated-subtitle" class="font-mono text-base font-bold uppercase tracking-wider text-white opacity-0">
 			{t("services.tagline")}
 		</h2>
-		<p id="scramble-text-tagline" class="mt-4 text-4xl font-bold leading-tight text-white md:text-6xl">
+		<p id="animated-tagline" class="mt-4 text-4xl font-bold leading-tight text-white md:text-6xl opacity-0">
 			{t("hero.tagline")}
 		</p>
 	</div>
@@ -25,66 +25,112 @@ const translatePath = useTranslatedPath(lang);
 <script>
 	import { gsap } from "gsap";
 	import { ScrollTrigger } from "gsap/ScrollTrigger";
-	import { ScrambleTextPlugin } from "gsap/ScrambleTextPlugin";
 	import { SplitText } from "gsap/SplitText";
 
-	gsap.registerPlugin(ScrollTrigger, ScrambleTextPlugin, SplitText);
+	gsap.registerPlugin(ScrollTrigger, SplitText);
 
 	function init() {
-		var scrambleSubtitleText = new SplitText("#scramble-text-subtitle", { type: "words" });
-		var scrambleTaglineText = new SplitText("#scramble-text-tagline", { type: "words" });
+		// Split text into words for stagger animation
+		const subtitleSplit = new SplitText("#animated-subtitle", { type: "words,chars" });
+		const taglineSplit = new SplitText("#animated-tagline", { type: "words,chars" });
 
-		var subtitleTl = gsap.timeline({
+		// Set initial state for subtitle words
+		gsap.set(subtitleSplit.words, {
+			opacity: 0,
+			y: 20,
+			rotateX: 90,
+			transformOrigin: "50% 50%"
+		});
+
+		// Set initial state for tagline words
+		gsap.set(taglineSplit.words, {
+			opacity: 0,
+			y: 30,
+			scale: 0.9,
+			rotateY: 10,
+			transformOrigin: "50% 50%"
+		});
+
+		// Animate subtitle
+		gsap.to(subtitleSplit.words, {
+			opacity: 1,
+			y: 0,
+			rotateX: 0,
+			duration: 0.4,
+			ease: "power2.out",
+			stagger: 0.02,
 			scrollTrigger: {
-				trigger: "#scramble-text-subtitle",
+				trigger: "#animated-subtitle",
+				start: "top 85%",
+				end: "bottom 15%",
+				toggleActions: "play none none reverse",
+			}
+		});
+
+		// Show subtitle container
+		gsap.to("#animated-subtitle", {
+			opacity: 1,
+			duration: 0.05,
+			scrollTrigger: {
+				trigger: "#animated-subtitle",
+				start: "top 85%",
+				end: "bottom 15%",
+				toggleActions: "play none none reverse",
+			}
+		});
+
+		// Animate tagline with delay
+		gsap.to(taglineSplit.words, {
+			opacity: 1,
+			y: 0,
+			scale: 1,
+			rotateY: 0,
+			duration: 0.5,
+			ease: "power2.out",
+			stagger: 0.03,
+			scrollTrigger: {
+				trigger: "#animated-tagline",
 				start: "top 80%",
 				end: "bottom 20%",
 				toggleActions: "play none none reverse",
-			},
+			}
 		});
 
-		scrambleSubtitleText.words.forEach((word, index) => {
-			subtitleTl.to(
-				word,
-				{
-					duration: 0.6,
-					scrambleText: {
-						text: word.textContent,
-						chars: "XO",
-						revealDelay: 0.5,
-						speed: 0.3,
-					},
-				},
-				index * 0.1,
-			);
-		});
-
-		var taglineTl = gsap.timeline({
+		// Show tagline container
+		gsap.to("#animated-tagline", {
+			opacity: 1,
+			duration: 0.05,
 			scrollTrigger: {
-				trigger: "#scramble-text-tagline",
+				trigger: "#animated-tagline",
 				start: "top 80%",
 				end: "bottom 20%",
 				toggleActions: "play none none reverse",
-			},
+			}
 		});
 
-		scrambleTaglineText.words.forEach((word, index) => {
-			taglineTl.to(
-				word,
-				{
-					duration: 0.8,
-					scrambleText: {
-						text: word.textContent,
-						chars: "XO",
-						revealDelay: 0.6,
-						speed: 0.4,
-					},
-				},
-				index * 0.15,
-			);
-		});
+		// Add a subtle hover effect for the tagline
+		const taglineElement = document.querySelector("#animated-tagline");
+		if (taglineElement) {
+			taglineElement.addEventListener("mouseenter", () => {
+				gsap.to(taglineSplit.words, {
+					scale: 1.02,
+					duration: 0.15,
+					ease: "power2.out",
+					stagger: 0.01
+				});
+			});
+
+			taglineElement.addEventListener("mouseleave", () => {
+				gsap.to(taglineSplit.words, {
+					scale: 1,
+					duration: 0.15,
+					ease: "power2.out",
+					stagger: 0.01
+				});
+			});
+		}
 	}
 
-	document.removeEventListener("DOMContentLoaded", init); // astro:page-load
-	document.addEventListener("DOMContentLoaded", init); // astro:page-load
+	document.removeEventListener("DOMContentLoaded", init);
+	document.addEventListener("DOMContentLoaded", init);
 </script>

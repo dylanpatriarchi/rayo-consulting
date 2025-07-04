@@ -3,7 +3,6 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
 import Hero from "@components/landing/Hero.astro";
 import Description from "@components/landing/Description.astro";
 import WorkPreview from "@components/landing/WorkPreview.astro";
-import Facts from "@components/landing/Facts.astro";
 
 const seo = {
 	title: "Rayo Consulting - Web Agency Città di Castello | Sviluppo Siti Web, App Mobile e AI",
@@ -31,6 +30,5 @@ const seo = {
 <BaseLayout seo={seo}>
 	<Hero />
 	<Description />
-	<Facts class="bg-gray-800" />
 	<WorkPreview class="pb-80 sm:pb-40" />
 </BaseLayout>
