@@ -1,4 +1,5 @@
 ---
+import Logo from "@components/global/Logo.astro";
 import { languages } from "@i18n/ui";
 import { getLangFromUrl, getUrlWithoutLang, useTranslatedPath, useTranslations } from "@i18n/utils";
 
@@ -8,80 +9,405 @@ const t = useTranslations(currentLang);
 const translatePath = useTranslatedPath(currentLang);
 ---
 
-<footer class="relative flex min-h-screen w-full flex-col gap-y-10 font-mono uppercase">
-	<div class="relative flex-grow"></div>
-	<div class="section gap-y-20">
-		<!-- Navigation Links -->
-		<div class="col-span-full col-start-1 sm:col-span-1 sm:col-start-1">
-			<div class="flex flex-col gap-2 px-4">
-				<a href={translatePath("/")} class="hover:text-gray-300 transition-colors">Home</a>
-				<a href={translatePath("/projects")} class="hover:text-gray-300 transition-colors">{t("projects")}</a>
-				<a href={translatePath("/services")} class="hover:text-gray-300 transition-colors">{t("services")}</a>
-				<a href={translatePath("/work-with-us")} class="hover:text-gray-300 transition-colors">{t("work.nav")}</a>
-				<a href={translatePath("/contact/")} class="hover:text-gray-300 transition-colors">{t("contacts")}</a>
-			</div>
-		</div>
-
-		<!-- Legal Links -->
-		<div class="col-span-full col-start-1 sm:col-span-1 sm:col-start-2">
-			<div class="flex flex-col gap-2 px-4">
-				<a href={translatePath("/privacy/")} class="hover:text-gray-300 transition-colors">Privacy Policy</a>
-				<a href={translatePath("/terms/")} class="hover:text-gray-300 transition-colors">Terms of Service</a>
-				<a href={translatePath("/cookies/")} class="hover:text-gray-300 transition-colors">Cookie Policy</a>
-			</div>
-		</div>
-
-		<!-- Social Media -->
-		<div class="col-span-full col-start-1 flex flex-col gap-2 sm:col-span-1 sm:col-start-3">
-			<a class="px-4 hover:text-gray-300 transition-colors" href="https://instagram.com/rayo.consulting" target="_blank">Instagram</a>
-		</div>
-
-		<!-- Contact Info -->
-		<div class="col-span-full col-start-1 flex items-end py-3 sm:col-span-2 sm:col-start-1 sm:row-start-2 lg:text-xl">
-			<a href="mailto:info@rayoconsulting.org" class="block cursor-pointer px-4 hover:text-gray-300 transition-colors">info@rayoconsulting.org</a>
-		</div>
-
-		<!-- Company Info -->
-		<div class="relative col-span-full col-start-1 mt-4 flex w-full flex-col gap-2 py-3 text-sm sm:col-span-2 sm:col-start-3 sm:row-start-2 lg:text-base">
-			<div class="px-4">
-				<div class="mb-2">
-					<strong>Rayo Consulting</strong><br>
-					{currentLang === "it" ? "Patriarchi Dylan" : "Dylan Patriarchi"}<br>
-					P.IVA: 03988190546<br>
-					Città di Castello, Italia
+<footer class="footer-container">
+	<div class="footer-layout">
+		<!-- Main Footer Content -->
+		<div class="footer-content">
+			<!-- Company Info -->
+			<div class="footer-company">
+				<div class="footer-logo">
+					<Logo />
 				</div>
-				<div class="text-xs text-gray-400">
-					©2025 Rayo Consulting. {currentLang === "it" ? "Tutti i diritti riservati." : "All rights reserved."}
+				<p class="footer-description">
+					{currentLang === "it" 
+						? "Trasformiamo idee in soluzioni digitali innovative. Web development, app mobile e AI per il tuo business." 
+						: "We transform ideas into innovative digital solutions. Web development, mobile apps and AI for your business."
+					}
+				</p>
+
+				<!-- Contact Info -->
+				<div class="footer-contact">
+					<a href="mailto:info@rayoconsulting.org" class="footer-contact-item">
+						<div class="contact-icon">
+							<svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+								<path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path>
+								<path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path>
+							</svg>
+						</div>
+						<span>info@rayoconsulting.org</span>
+					</a>
+					
+					<div class="footer-contact-item">
+						<div class="contact-icon">
+							<svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+								<path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path>
+							</svg>
+						</div>
+						<span>Città di Castello, Italia</span>
+					</div>
 				</div>
 			</div>
+
+			<!-- Navigation Links -->
+			<div class="footer-nav">
+				<h4 class="footer-title">
+					{currentLang === "it" ? "Navigazione" : "Navigation"}
+				</h4>
+				<div class="footer-links">
+					<a href={translatePath("/")} class="footer-link">Home</a>
+					<a href={translatePath("/projects")} class="footer-link">{t("projects")}</a>
+					<a href={translatePath("/services")} class="footer-link">{t("services")}</a>
+					<a href={translatePath("/testimonials")} class="footer-link">{currentLang === "it" ? "Recensioni" : "Testimonials"}</a>
+					<a href={translatePath("/contact/")} class="footer-link">{t("contacts")}</a>
+				</div>
+			</div>
+
+			<!-- Legal & Social -->
+			<div class="footer-legal">
+				<h4 class="footer-title">Legal & Social</h4>
+				<div class="footer-links">
+					<a href={translatePath("/privacy/")} class="footer-link">Privacy Policy</a>
+					<a href={translatePath("/terms/")} class="footer-link">Terms of Service</a>
+					<a href={translatePath("/cookies/")} class="footer-link">Cookie Policy</a>
+				</div>
+				
+				<!-- Social Links -->
+				<div class="footer-social">
+					<a href="https://instagram.com/rayo.consulting" target="_blank" class="social-link">
+						<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+							<path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 6.62 5.367 11.987 11.988 11.987c6.62 0 11.987-5.367 11.987-11.987C24.014 5.367 18.637.001 12.017.001zM8.449 16.988c-1.297 0-2.448-.611-3.194-1.559l3.194-3.194l3.194 3.194c-.746.948-1.897 1.559-3.194 1.559z"/>
+						</svg>
+					</a>
+				</div>
+			</div>
 		</div>
 
-		<!-- Language Switcher -->
-		<div class="col-span-1 col-start-3 flex items-end gap-2 px-4 py-3 sm:col-span-1 sm:col-start-1 sm:row-start-3 lg:text-xl">
-			{
-				Object.entries(languages).map(([lang, label]) => (
-					<a
-						class:list={[
-							"px-2 py-1 border transition-colors",
-							currentLang == lang ? "bg-white text-black border-white" : "border-gray-600 hover:border-white"
+		<!-- Bottom Bar -->
+		<div class="footer-bottom">
+			<div class="footer-copyright">
+				<div class="copyright-text">
+					<strong>Rayo Consulting</strong> - {currentLang === "it" ? "Patriarchi Dylan" : "Dylan Patriarchi"}
+				</div>
+				<div class="copyright-details">
+					P.IVA: 03988190546 • ©2025 {currentLang === "it" ? "Tutti i diritti riservati" : "All rights reserved"}
+				</div>
+			</div>
+
+			<div class="footer-actions">
+				<div class="language-switcher">
+					{Object.entries(languages).map(([lang, label]) => (
+						<a class:list={[
+								"lang-button",
+								currentLang == lang ? "active" : ""
 						]}
 						href={translatePath(path, `${currentLang === "it" ? "en" : "it"}`)}>
 						{lang.toUpperCase()}
 					</a>
-				))
-			}
-		</div>
+					))}
+				</div>
 
-		<!-- Go to Top Button -->
-		<button id="go-top-button" aria-label="Go to Top" class="col-span-1 col-start-4 flex items-end justify-end py-2 duration-300 sm:col-start-4 sm:row-start-3 hover:text-gray-300">
-			<svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 24 24">
-				<g stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" fill="none">
-					<path d="m15 12l-3-3m0 0l-3 3m3-3v6"></path>
-				</g>
-			</svg>
-		</button>
+				<!-- Back to Top -->
+				<button id="go-top-button" aria-label="Go to Top" class="back-to-top">
+					<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+						<path fill-rule="evenodd" d="M3.293 9.707a1 1 0 010-1.414l6-6a1 1 0 011.414 0l6 6a1 1 0 01-1.414 1.414L11 5.414V17a1 1 0 11-2 0V5.414L4.707 9.707a1 1 0 01-1.414 0z" clip-rule="evenodd"/>
+					</svg>
+				</button>
+			</div>
+		</div>
 	</div>
 </footer>
+
+<style>
+	.footer-container {
+		position: relative;
+		background: linear-gradient(135deg, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.3) 100%);
+		border-top: 1px solid rgba(255, 255, 255, 0.1);
+	}
+
+	.footer-layout {
+		width: 100vw;
+		margin-left: calc(-50vw + 50%);
+		padding: 4rem 2rem 2rem;
+	}
+
+	.footer-content {
+		display: grid;
+		grid-template-columns: 1fr;
+		gap: 3rem;
+		max-width: 1200px;
+		margin: 0 auto 3rem auto;
+	}
+
+	.footer-company {
+		text-align: center;
+	}
+
+	.footer-logo {
+		margin-bottom: 1.5rem;
+	}
+
+	.footer-description {
+		color: rgba(255, 255, 255, 0.8);
+		font-size: 1rem;
+		line-height: 1.6;
+		margin-bottom: 2rem;
+		font-family: 'Inter', sans-serif;
+		max-width: 400px;
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	.footer-contact {
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
+		align-items: center;
+	}
+
+	.footer-contact-item {
+		display: flex;
+		align-items: center;
+		gap: 0.75rem;
+		color: rgba(255, 255, 255, 0.8);
+		font-family: 'Inter', sans-serif;
+		font-size: 0.875rem;
+		text-decoration: none;
+		transition: all 0.3s ease;
+	}
+
+	.footer-contact-item:hover {
+		color: white;
+	}
+
+	.contact-icon {
+		width: 2rem;
+		height: 2rem;
+		background: rgba(255, 255, 255, 0.1);
+		border-radius: 50%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		transition: all 0.3s ease;
+	}
+
+	.footer-contact-item:hover .contact-icon {
+		background: rgba(255, 255, 255, 0.2);
+	}
+
+	.footer-nav, .footer-legal {
+		text-align: center;
+	}
+
+	.footer-title {
+		color: white;
+		font-size: 1rem;
+		font-weight: 600;
+		margin-bottom: 1.5rem;
+		font-family: 'Inter', sans-serif;
+		text-transform: uppercase;
+		letter-spacing: 0.05em;
+	}
+
+	.footer-links {
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
+		align-items: center;
+	}
+
+	.footer-link {
+		color: rgba(255, 255, 255, 0.7);
+		text-decoration: none;
+		font-family: 'Inter', sans-serif;
+		font-size: 0.875rem;
+		transition: all 0.3s ease;
+		padding: 0.5rem 1rem;
+		border-radius: 0.5rem;
+	}
+
+	.footer-link:hover {
+		color: white;
+		background: rgba(255, 255, 255, 0.05);
+	}
+
+	.footer-social {
+		display: flex;
+		justify-content: center;
+		gap: 1rem;
+		margin-top: 1.5rem;
+	}
+
+	.social-link {
+		width: 2.5rem;
+		height: 2.5rem;
+		background: rgba(255, 255, 255, 0.1);
+		border-radius: 50%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		color: rgba(255, 255, 255, 0.7);
+		text-decoration: none;
+		transition: all 0.3s ease;
+	}
+
+	.social-link:hover {
+		background: white;
+		color: black;
+		transform: translateY(-2px);
+	}
+
+	.footer-bottom {
+		border-top: 1px solid rgba(255, 255, 255, 0.1);
+		padding-top: 2rem;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 2rem;
+		max-width: 1200px;
+		margin: 0 auto;
+	}
+
+	.footer-copyright {
+		text-align: center;
+	}
+
+	.copyright-text {
+		color: white;
+		font-size: 0.875rem;
+		font-family: 'Inter', sans-serif;
+		margin-bottom: 0.5rem;
+	}
+
+	.copyright-details {
+		color: rgba(255, 255, 255, 0.6);
+		font-size: 0.75rem;
+		font-family: 'Inter', sans-serif;
+	}
+
+	.footer-actions {
+		display: flex;
+		align-items: center;
+		gap: 1.5rem;
+	}
+
+	.language-switcher {
+		display: flex;
+		gap: 0.5rem;
+	}
+
+	.lang-button {
+		padding: 0.5rem 1rem;
+		background: rgba(255, 255, 255, 0.1);
+		color: rgba(255, 255, 255, 0.7);
+		text-decoration: none;
+		font-family: 'Inter', sans-serif;
+		font-size: 0.75rem;
+		font-weight: 600;
+		border-radius: 0.5rem;
+		transition: all 0.3s ease;
+	}
+
+	.lang-button:hover,
+	.lang-button.active {
+		background: white;
+		color: black;
+	}
+
+	.back-to-top {
+		width: 2.5rem;
+		height: 2.5rem;
+		background: rgba(255, 255, 255, 0.1);
+		border: none;
+		border-radius: 50%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		color: rgba(255, 255, 255, 0.7);
+		cursor: pointer;
+		transition: all 0.3s ease;
+	}
+
+	.back-to-top:hover {
+		background: white;
+		color: black;
+		transform: translateY(-2px);
+	}
+
+	/* Desktop Layout */
+	@media (min-width: 768px) {
+		.footer-content {
+			grid-template-columns: 2fr 1fr 1fr;
+			gap: 4rem;
+		}
+
+		.footer-company {
+			text-align: left;
+		}
+
+		.footer-description {
+			margin-left: 0;
+			margin-right: 0;
+		}
+
+		.footer-contact {
+			align-items: flex-start;
+		}
+
+		.footer-nav, .footer-legal {
+			text-align: left;
+		}
+
+		.footer-links {
+			align-items: flex-start;
+		}
+
+		.footer-social {
+			justify-content: flex-start;
+		}
+
+		.footer-bottom {
+			flex-direction: row;
+			justify-content: space-between;
+			align-items: center;
+		}
+
+		.footer-copyright {
+			text-align: left;
+		}
+	}
+
+	@media (min-width: 1024px) {
+		.footer-layout {
+			padding: 6rem 4rem 3rem;
+		}
+
+		.footer-content {
+			gap: 6rem;
+		}
+	}
+
+	@media (min-width: 1400px) {
+		.footer-layout {
+			padding: 6rem 8rem 3rem;
+		}
+	}
+
+	/* Mobile Responsive */
+	@media (max-width: 767px) {
+		.footer-layout {
+			padding: 3rem 1.5rem 2rem;
+		}
+
+		.footer-content {
+			gap: 2.5rem;
+		}
+
+		.footer-actions {
+			flex-direction: column;
+			gap: 1rem;
+		}
+	}
+</style>
 
 <script>
 	import { gsap } from "gsap";

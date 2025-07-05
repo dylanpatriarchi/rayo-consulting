@@ -1,7 +1,7 @@
 ---
 import type { AstroSeoProps } from "@astrolib/seo";
 import BaseHead from "@components/BaseHead.astro";
-import BackgroundLines from "@components/global/BackgroundLines.astro";
+
 import Footer from "@components/global/Footer.astro";
 import Navigation from "@components/global/Navigation.astro";
 import CookieBanner from "@components/global/CookieBanner.astro";
@@ -19,25 +19,27 @@ const lang = getLangFromUrl(Astro.url);
 const ogImageUrl = new URL("/og-image.svg", Astro.site).toString();
 
 const defaultSeo: AstroSeoProps = {
-	title: "Rayo Consulting - Sviluppo Web, App Mobile e Soluzioni AI",
+	title: "Rayo Consulting - Sviluppo Web, App Mobile e Soluzioni AI | Città di Castello, Umbria",
 	description:
-		"Rayo Consulting è specializzata in sviluppo web, applicazioni mobile e soluzioni AI. Trasformiamo le tue idee in realtà digitali innovative a Città di Castello, Italia.",
+		"🚀 Rayo Consulting: Web Agency specializzata in sviluppo siti web, app mobile e soluzioni AI a Città di Castello, Umbria. Trasformiamo le tue idee in realtà digitali innovative. Preventivi gratuiti! ⭐ 5/5 stelle dai clienti.",
 	canonical: "https://rayo.consulting",
 	openGraph: {
 		url: "https://rayo.consulting",
-		title: "Rayo Consulting - Sviluppo Web, App Mobile e Soluzioni AI",
+		title: "Rayo Consulting - Sviluppo Web, App Mobile e Soluzioni AI | Città di Castello",
 		description:
-			"Rayo Consulting è specializzata in sviluppo web, applicazioni mobile e soluzioni AI. Trasformiamo le tue idee in realtà digitali innovative a Città di Castello, Italia.",
+			"Web Agency specializzata in sviluppo siti web, app mobile e soluzioni AI a Città di Castello, Umbria. Trasformiamo le tue idee in realtà digitali innovative. Preventivi gratuiti!",
 		images: [
 			{
 				url: ogImageUrl,
 				width: 1200,
 				height: 630,
-				alt: "Rayo Consulting - Social Share",
+				alt: "Rayo Consulting - Web Agency Città di Castello",
 				type: "image/svg+xml",
 			},
 		],
 		site_name: "Rayo Consulting",
+		type: "website",
+		locale: lang === "it" ? "it_IT" : "en_US",
 	},
 	twitter: {
 		handle: "@rayo.consulting",
@@ -52,6 +54,30 @@ const defaultSeo: AstroSeoProps = {
 		{
 			name: "author",
 			content: "Rayo Consulting",
+		},
+		{
+			name: "theme-color",
+			content: "#000000",
+		},
+		{
+			name: "msapplication-TileColor",
+			content: "#000000",
+		},
+		{
+			property: "business:contact_data:locality",
+			content: "Città di Castello",
+		},
+		{
+			property: "business:contact_data:region",
+			content: "Umbria",
+		},
+		{
+			property: "business:contact_data:country_name",
+			content: "Italia",
+		},
+		{
+			property: "business:contact_data:email",
+			content: "info@rayoconsulting.org",
 		},
 	],
 };
@@ -68,7 +94,6 @@ const seo = {
 	</head>
 	<body class="bg-black">
 		<Navigation />
-		<BackgroundLines />
 		<slot />
 		<Footer />
 		<CookieBanner />

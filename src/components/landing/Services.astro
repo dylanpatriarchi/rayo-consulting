@@ -51,8 +51,8 @@ const points = [
 		{
 			points.map(({ title, content, image }) => (
 				<div class="point flex h-screen w-full flex-col items-center justify-center gap-x-20 gap-y-12 p-16 pr-0 md:flex-row lg:gap-x-40">
-					<div class="hidden w-full max-w-80 lg:block">
-						<Fragment set:html={image} class="" />
+					<div class="hidden w-full max-w-80 lg:block service-image-container">
+						<Fragment set:html={image} class="service-image" />
 					</div>
 					<article class="flex flex-col gap-14">
 						<h3 class="faq font-display text-4xl uppercase md:text-5xl lg:text-6xl">{title}</h3>
@@ -63,6 +63,21 @@ const points = [
 		}
 	</div>
 </section>
+
+<style>
+	.service-image-container {
+		transition: all 0.3s ease;
+	}
+
+	.service-image-container:hover {
+		filter: invert(1);
+		transform: scale(1.05);
+	}
+
+	.service-image-container svg {
+		transition: all 0.3s ease;
+	}
+</style>
 
 <script>
 	import { gsap } from "gsap";

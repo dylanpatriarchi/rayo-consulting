@@ -1,0 +1,36 @@
+---
+const { class: className } = Astro.props;
+---
+
+<div class:list={["logo-container", className]}>
+  <span class="logo-text">rayo</span>
+</div>
+
+<style>
+  .logo-container {
+    display: inline-block;
+  }
+
+  .logo-text {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: white;
+    text-decoration: none;
+    letter-spacing: 0.02em;
+    transition: all 0.3s ease;
+    text-transform: lowercase;
+    background: transparent;
+    padding-left: 15px;
+  }
+
+  .logo-text:hover {
+    color: white;
+  }
+
+  @media (min-width: 768px) {
+    .logo-text {
+      font-size: 1.375rem;
+    }
+  }
+</style> 

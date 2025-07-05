@@ -1,6 +1,7 @@
 ---
 import { Image } from "astro:assets";
 import { Icon } from "astro-icon/components";
+import Logo from "@components/global/Logo.astro";
 import { languages } from "@i18n/ui";
 import { getLangFromUrl, getUrlWithoutLang, useTranslations, useTranslatedPath } from "@i18n/utils";
 
@@ -11,43 +12,31 @@ const translatePath = useTranslatedPath(lang);
 
 let pages = [
 	{
-		id: "home",
-		initialTitle: "H",
-		title: "Home",
-		class: "home",
-		url: "/",
-	},
-	{
 		id: "projects",
-		initialTitle: "P",
 		title: t("projects"),
 		class: "projects",
 		url: "/projects",
 	},
 	{
 		id: "services",
-		initialTitle: "S",
 		title: t("services"),
 		class: "services",
 		url: "/services",
 	},
 	{
-		id: "work",
-		initialTitle: "W",
-		title: t("work.nav"),
-		class: "work",
-		url: "/work-with-us",
+		id: "testimonials",
+		title: lang === "it" ? "Recensioni" : "Testimonials",
+		class: "testimonials",
+		url: "/testimonials",
 	},
 	{
 		id: "contact",
-		initialTitle: "C",
 		title: t("contacts"),
 		class: "contact",
 		url: "/contact/",
 	},
 	{
 		id: "language",
-		initialTitle: lang.toUpperCase(),
 		title: lang.toUpperCase(),
 		class: "language",
 		url: translatePath(path, `${lang === "it" ? "en" : "it"}`),
@@ -58,155 +47,336 @@ let pages = [
 const { pathname } = Astro.url;
 ---
 
-<header class="header flex justify-center items-center gap-8 md:gap-12 lg:gap-16 w-full">
+<div class="navbar-container">
+<header class="header flex justify-between items-center w-full px-6 lg:px-12 xl:px-16">
+	<!-- Logo -->
+	<div class="logo-wrapper">
+		<a href={translatePath("/")} class="logo-link">
+			<Logo />
+		</a>
+	</div>
+
+	<!-- Mobile Menu Button -->
+	<button class="mobile-menu-button md:hidden" id="mobile-menu-button">
+		<span class="hamburger-line"></span>
+		<span class="hamburger-line"></span>
+		<span class="hamburger-line"></span>
+	</button>
+
+	<!-- Navigation Menu -->
+	<nav class="nav-menu flex items-center gap-8" id="nav-menu">
 	{
 		pages.map((page) => (
 			<div class={`menu-item ${page.class}`} data-item-id={page.id}>
 				{page.isLanguage ? (
 					<a
 						href={page.url}
-						data-title={page.title}
-						class="flex h-full items-center justify-center py-3 px-2 border border-gray-600 hover:border-white bg-white text-black font-mono text-xs font-bold uppercase sm:text-base md:text-xl transition-colors">
+							class="nav-link text-white hover:text-white transition-colors font-sans text-sm font-medium uppercase">
 						{page.title}
 					</a>
 				) : (
 					<a
 						href={translatePath(page.url)}
-						data-title={page.title}
-						class="flex h-full items-center justify-center py-3 font-mono text-xs font-bold uppercase sm:text-base md:text-xl">
+							class="nav-link text-white hover:text-white transition-colors font-sans text-sm font-medium uppercase">
 						{page.title}
 					</a>
 				)}
 			</div>
 		))
 	}
+	</nav>
+
+	<!-- Mobile Menu Overlay -->
+	<div class="mobile-menu-overlay" id="mobile-menu-overlay">
+		<nav class="mobile-nav">
+			{
+				pages.map((page) => (
+					<div class={`mobile-menu-item ${page.class}`}>
+						{page.isLanguage ? (
+							<a
+								href={page.url}
+								class="mobile-nav-link">
+								{page.title}
+							</a>
+						) : (
+							<a
+								href={translatePath(page.url)}
+								class="mobile-nav-link">
+								{page.title}
+							</a>
+						)}
+					</div>
+				))
+			}
+		</nav>
+	</div>
 </header>
+</div>
 
 <style>
-	header.header {
-		mix-blend-mode: exclusion;
-		height: auto;
+	.navbar-container {
 		position: fixed;
-		z-index: 99;
+		z-index: 999;
 		top: 0;
 		left: 0;
 		right: 0;
-		padding: 1rem;
+		width: 100%;
+		transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+		transform: translateY(-100%);
+		opacity: 0;
+		visibility: hidden;
+	}
+
+	.navbar-container.visible {
+		transform: translateY(0);
+		opacity: 1;
+		visibility: visible;
+	}
+
+	header.header {
+		background: rgba(255, 255, 255, 0.02);
+		backdrop-filter: blur(25px) saturate(180%);
+		-webkit-backdrop-filter: blur(25px) saturate(180%);
+		box-shadow: 
+			0 4px 24px rgba(0, 0, 0, 0.05),
+			inset 0 1px 0 rgba(255, 255, 255, 0.08);
+		padding: 0.75rem 0;
+		transition: all 0.3s ease;
+	}
+
+	.navbar-container.visible header.header {
+		background: rgba(255, 255, 255, 0.04);
+		backdrop-filter: blur(35px) saturate(200%);
+		-webkit-backdrop-filter: blur(35px) saturate(200%);
+		box-shadow: 
+			0 8px 32px rgba(0, 0, 0, 0.08),
+			inset 0 1px 0 rgba(255, 255, 255, 0.12);
+	}
+
+	.logo-wrapper {
+		display: flex;
+		align-items: center;
+	}
+
+	.logo-link {
+		display: flex;
+		align-items: center;
+		text-decoration: none;
+		transition: all 0.2s ease;
+		position: relative;
+		background: transparent;
+	}
+
+	.logo-link:hover {
+		background: transparent;
+	}
+
+	.nav-menu {
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+	}
+
+	.menu-item a {
+		padding: 0.5rem 0.875rem;
+		transition: all 0.2s ease;
+		position: relative;
+		font-weight: 500;
+		letter-spacing: 0.025em;
+		background: transparent;
+		color: white !important;
+		text-decoration: none;
+		opacity: 1 !important;
+		visibility: visible !important;
+		display: inline-block !important;
+	}
+
+	.menu-item a:hover {
+		color: white !important;
+		background: transparent;
+		opacity: 1 !important;
+	}
+
+	/* Mobile Menu Button */
+	.mobile-menu-button {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		width: 2rem;
+		height: 2rem;
+		background: transparent;
+		border: none;
+		cursor: pointer;
+		gap: 0.25rem;
+		z-index: 1001;
+	}
+
+	.hamburger-line {
+		width: 1.5rem;
+		height: 2px;
+		background: white;
+		transition: all 0.3s ease;
+		transform-origin: center;
+	}
+
+	.mobile-menu-button.active .hamburger-line:nth-child(1) {
+		transform: rotate(45deg) translate(0.375rem, 0.375rem);
+	}
+
+	.mobile-menu-button.active .hamburger-line:nth-child(2) {
+		opacity: 0;
+	}
+
+	.mobile-menu-button.active .hamburger-line:nth-child(3) {
+		transform: rotate(-45deg) translate(0.375rem, -0.375rem);
+	}
+
+	/* Mobile Menu Overlay */
+	.mobile-menu-overlay {
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100vh;
+		background: rgba(0, 0, 0, 0.95);
+		backdrop-filter: blur(20px);
+		z-index: 1000;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		opacity: 0;
+		visibility: hidden;
+		transition: all 0.3s ease;
+	}
+
+	.mobile-menu-overlay.active {
+		opacity: 1;
+		visibility: visible;
+	}
+
+	.mobile-nav {
+		display: flex;
+		flex-direction: column;
+		gap: 2rem;
+		text-align: center;
+	}
+
+	.mobile-nav-link {
+		color: white;
+		text-decoration: none;
+		font-family: 'Inter', sans-serif;
+		font-size: 1.5rem;
+		font-weight: 600;
+		text-transform: uppercase;
+		letter-spacing: 0.1em;
+		transition: all 0.3s ease;
+		padding: 1rem 2rem;
+		border: 1px solid transparent;
+		border-radius: 0.5rem;
+	}
+
+	.mobile-nav-link:hover {
+		color: black;
+		background: white;
+		border-color: white;
+	}
+
+	/* Hide mobile menu on desktop */
+	@media (min-width: 768px) {
+		.mobile-menu-button {
+			display: none !important;
+		}
+
+		.mobile-menu-overlay {
+			display: none !important;
+		}
+	}
+
+	/* Hide desktop menu on mobile */
+	@media (max-width: 767px) {
+		.nav-menu {
+			display: none !important;
+		}
 	}
 </style>
 
 <script>
 	import { gsap } from "gsap";
 	import { ScrollTrigger } from "gsap/ScrollTrigger";
-	import { ScrambleTextPlugin } from "gsap/ScrambleTextPlugin";
 
-	gsap.registerPlugin(ScrollTrigger, ScrambleTextPlugin);
+	gsap.registerPlugin(ScrollTrigger);
 
 	function init() {
-		const homeScrambleTl = gsap
-			.timeline({
-				defaults: {
-					duration: 0.8,
-					ease: "power4.inOut",
-				},
-			})
-			.from("header .menu-item.home a", {
-				scrambleText: {
-					text: "H",
-					speed: 0.4,
-				},
+		// Header scroll effect
+		const navbar = document.querySelector('.navbar-container');
+		if (navbar) {
+			window.addEventListener('scroll', () => {
+				if (window.scrollY > 100) {
+					navbar.classList.add('visible');
+				} else {
+					navbar.classList.remove('visible');
+				}
+			});
+		}
+
+		// Mobile menu functionality
+		const mobileMenuButton = document.getElementById('mobile-menu-button');
+		const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
+		const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+
+		if (mobileMenuButton && mobileMenuOverlay) {
+			mobileMenuButton.addEventListener('click', () => {
+				const isActive = mobileMenuButton.classList.contains('active');
+				
+				if (isActive) {
+					// Close menu
+					mobileMenuButton.classList.remove('active');
+					mobileMenuOverlay.classList.remove('active');
+					document.body.style.overflow = '';
+				} else {
+					// Open menu
+					mobileMenuButton.classList.add('active');
+					mobileMenuOverlay.classList.add('active');
+					document.body.style.overflow = 'hidden';
+				}
 			});
 
-		const projectsScrambleTl = gsap
-			.timeline({
-				defaults: {
-					duration: 0.8,
-					ease: "power4.inOut",
-				},
-			})
-			.from("header .menu-item.projects a", {
-				scrambleText: {
-					text: "P",
-					speed: 0.4,
-				},
+			// Close menu when clicking on overlay
+			mobileMenuOverlay.addEventListener('click', (e) => {
+				if (e.target === mobileMenuOverlay) {
+					mobileMenuButton.classList.remove('active');
+					mobileMenuOverlay.classList.remove('active');
+					document.body.style.overflow = '';
+				}
 			});
 
-		const servicesScrambleTl = gsap
-			.timeline({
-				defaults: {
-					duration: 0.8,
-					ease: "power4.inOut",
-				},
-			})
-			.from("header .menu-item.services a", {
-				scrambleText: {
-					text: "S",
-					speed: 0.4,
-				},
+			// Close menu when clicking on nav links
+			mobileNavLinks.forEach(link => {
+				link.addEventListener('click', () => {
+					mobileMenuButton.classList.remove('active');
+					mobileMenuOverlay.classList.remove('active');
+					document.body.style.overflow = '';
+				});
 			});
 
-		const workScrambleTl = gsap
-			.timeline({
-				defaults: {
-					duration: 0.8,
-					ease: "power4.inOut",
-				},
-			})
-			.from("header .menu-item.work a", {
-				scrambleText: {
-					text: "W",
-					speed: 0.4,
-				},
+			// Close menu with Escape key
+			document.addEventListener('keydown', (e) => {
+				if (e.key === 'Escape' && mobileMenuOverlay.classList.contains('active')) {
+					mobileMenuButton.classList.remove('active');
+					mobileMenuOverlay.classList.remove('active');
+					document.body.style.overflow = '';
+				}
 			});
+		}
 
-		const contactScrambleTl = gsap
-			.timeline({
-				defaults: {
-					duration: 0.8,
-					ease: "power4.inOut",
-				},
-			})
-			.from("header .menu-item.contact a", {
-				scrambleText: {
-					text: "C",
-					speed: 0.4,
-				},
-			});
-
-		const languageScrambleTl = gsap
-			.timeline({
-				defaults: {
-					duration: 0.8,
-					ease: "power4.inOut",
-				},
-			})
-			.from("header .menu-item.language a", {
-				scrambleText: {
-					text: document.querySelector("header .menu-item.language a")?.textContent || "EN",
-					speed: 0.4,
-				},
-			});
-
-		const headerScrambleTl = gsap
-			.timeline()
-			.add(homeScrambleTl)
-			.add(projectsScrambleTl, "<=+0.2")
-			.add(servicesScrambleTl, "<=+0.2")
-			.add(workScrambleTl, "<=+0.2")
-			.add(contactScrambleTl, "<=+0.2")
-			.add(languageScrambleTl, "<=+0.2");
-
-		ScrollTrigger.create({
-			start: "top top",
-			end: "max",
-			onUpdate: (self) => {
-				self.direction === -1 ? headerScrambleTl.timeScale(1).play() : headerScrambleTl.timeScale(1.5).reverse();
-			},
+		// Assicuriamoci che le scritte siano visibili
+		gsap.set(".nav-link", {
+			opacity: 1,
+			y: 0
 		});
-
-		// On mouse hover if the text is scramble unscramble it
 	}
 
-	document.removeEventListener("DOMContentLoaded", init); // astro:page-load
-	document.addEventListener("DOMContentLoaded", init); // astro:page-load
+	document.removeEventListener("DOMContentLoaded", init);
+	document.addEventListener("DOMContentLoaded", init);
 </script>

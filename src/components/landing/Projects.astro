@@ -1,0 +1,253 @@
+---
+import { getCollection } from "astro:content";
+import { getLangFromUrl } from "@i18n/utils";
+import CardSwap from "@/components/work/CardSwap.astro";
+
+const lang = getLangFromUrl(Astro.url);
+
+const allProjects = (await getCollection("projects"))
+	.filter((prj) => {
+		const [postLang, ...slug] = prj.slug.split("/");
+		return postLang === lang;
+	})
+	.map((prj) => {
+		const [postLang, slug] = prj.slug.split("/");
+		return {
+			...prj,
+			slug: slug,
+		};
+	})
+	.sort((a, b) => Number(a.data.order) - Number(b.data.order));
+
+// Convert projects to CardSwap format - limit to first 3 projects
+const cardSwapProjects = allProjects.slice(0, 3).map((project) => ({
+	id: project.slug,
+	title: project.data.title,
+	description: project.data.description,
+	video: project.data.video,
+	img: project.data.image?.source?.src,
+	link: project.data.link,
+}));
+---
+
+<section class="section min-h-screen relative">
+	<div class="col-span-full">
+		<div class="projects-layout">
+			<!-- Left side - Project title -->
+			<div class="projects-description">
+				<h2 class="projects-title">
+					{lang === "it" ? "I nostri progetti" : "Our projects"}
+				</h2>
+				<p class="projects-subtitle">
+					{lang === "it" ? "Clicca per visitare" : "Click to visit"}
+				</p>
+				<p class="projects-intro">
+					{lang === "it" 
+						? "Scopri alcuni dei progetti che abbiamo realizzato per i nostri clienti. Ogni progetto è unico e creato su misura."
+						: "Discover some of the projects we've created for our clients. Each project is unique and custom-made."
+					}
+				</p>
+				<div class="projects-cta">
+					<a 
+						href={lang === "it" ? "/it/projects" : "/projects"}
+						class="projects-button"
+					>
+						{lang === "it" ? "Vedi tutti i progetti" : "View all projects"}
+					</a>
+				</div>
+			</div>
+
+			<!-- Right side - CardSwap -->
+			<div class="projects-cardswap">
+				<CardSwap
+					width={400}
+					height={320}
+					cardDistance={40}
+					verticalDistance={50}
+					delay={2500}
+					pauseOnHover={false}
+					autoPlay={true}
+					skewAmount={4}
+					easing="elastic"
+					projects={cardSwapProjects}
+				/>
+			</div>
+		</div>
+	</div>
+</section>
+
+<style>
+	.projects-layout {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 3rem;
+		padding: 4rem 1.5rem;
+		max-width: 1400px;
+		margin: 0 auto;
+	}
+
+	.projects-description {
+		text-align: center;
+		max-width: 600px;
+		width: 100%;
+	}
+
+	.projects-cardswap {
+		width: 100%;
+		max-width: 500px;
+		height: 400px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		position: relative;
+	}
+
+	.projects-title {
+		font-size: 2rem;
+		font-weight: bold;
+		color: white;
+		margin: 0 0 1rem 0;
+		font-family: 'Inter', sans-serif;
+		line-height: 1.1;
+	}
+
+	.projects-subtitle {
+		font-size: 1rem;
+		color: rgba(255, 255, 255, 0.7);
+		margin: 0 0 1.5rem 0;
+		font-family: 'Inter', sans-serif;
+		font-weight: 500;
+	}
+
+	.projects-intro {
+		color: rgba(255, 255, 255, 0.8);
+		font-size: 0.9rem;
+		line-height: 1.6;
+		margin: 0 0 2rem 0;
+		font-family: 'Inter', sans-serif;
+	}
+
+	.projects-cta {
+		display: flex;
+		justify-content: center;
+	}
+
+	.projects-button {
+		display: inline-block;
+		padding: 0.875rem 2rem;
+		background: transparent;
+		color: white;
+		text-decoration: none;
+		font-family: 'Inter', sans-serif;
+		font-weight: 600;
+		font-size: 0.875rem;
+		text-transform: uppercase;
+		letter-spacing: 0.05em;
+		border: 1px solid rgba(255, 255, 255, 0.2);
+		border-radius: 0.5rem;
+		transition: all 0.3s ease;
+	}
+
+	.projects-button:hover {
+		background: white;
+		color: black;
+		border-color: white;
+	}
+
+	/* Tablet Layout */
+	@media (min-width: 768px) {
+		.projects-layout {
+			gap: 4rem;
+			padding: 4rem 2rem;
+		}
+
+		.projects-title {
+			font-size: 2.5rem;
+		}
+
+		.projects-subtitle {
+			font-size: 1.125rem;
+		}
+
+		.projects-intro {
+			font-size: 1rem;
+		}
+
+		.projects-cardswap {
+			height: 450px;
+		}
+	}
+
+	/* Desktop Layout */
+	@media (min-width: 1024px) {
+		.projects-layout {
+			flex-direction: row;
+			align-items: center;
+			justify-content: center;
+			gap: 6rem;
+			padding: 4rem 3rem;
+		}
+
+		.projects-description {
+			text-align: left;
+			flex-shrink: 0;
+			width: 450px;
+		}
+
+		.projects-cardswap {
+			flex: 1;
+			max-width: 600px;
+			height: 500px;
+		}
+
+		.projects-title {
+			font-size: 3rem;
+		}
+	}
+
+	/* Large Desktop */
+	@media (min-width: 1400px) {
+		.projects-layout {
+			gap: 8rem;
+			padding: 4rem 4rem;
+		}
+
+		.projects-title {
+			font-size: 3.5rem;
+		}
+
+		.projects-description {
+			width: 500px;
+		}
+	}
+
+	/* Small Mobile */
+	@media (max-width: 480px) {
+		.projects-layout {
+			gap: 2rem;
+			padding: 3rem 1rem;
+		}
+
+		.projects-title {
+			font-size: 1.75rem;
+		}
+
+		.projects-subtitle {
+			font-size: 0.875rem;
+		}
+
+		.projects-intro {
+			font-size: 0.8rem;
+		}
+
+		.projects-cardswap {
+			height: 300px;
+		}
+
+		.projects-button {
+			padding: 0.75rem 1.5rem;
+			font-size: 0.8rem;
+		}
+	}
+</style> 

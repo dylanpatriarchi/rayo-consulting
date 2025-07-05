@@ -1,11 +1,59 @@
 User-agent: *
 Allow: /
-Disallow: /admin/
-Disallow: /*.json$
-Disallow: /api/
-Disallow: /private/
 
-# Crawl-delay for respectful crawling
+# Allow important pages and assets
+Allow: /it/
+Allow: /services/
+Allow: /it/services/
+Allow: /projects/
+Allow: /it/projects/
+Allow: /testimonials/
+Allow: /it/testimonials/
+Allow: /contact/
+Allow: /it/contact/
+Allow: /privacy/
+Allow: /it/privacy/
+Allow: /terms/
+Allow: /it/terms/
+Allow: /cookies/
+Allow: /it/cookies/
+Allow: /work/
+Allow: /it/work/
+Allow: /logo.svg
+Allow: /favicon.ico
+Allow: /favicon.svg
+Allow: /manifest.webmanifest
+Allow: /robots.txt
+Allow: /sitemap.xml
+
+# Block admin and private areas
+Disallow: /admin/
+Disallow: /private/
+Disallow: /_astro/
+Disallow: /api/
+Disallow: /temp/
+Disallow: /tmp/
+Disallow: /.well-known/
+Disallow: /node_modules/
+Disallow: /.git/
+Disallow: /.env
+Disallow: /.htaccess
+Disallow: /src/
+Disallow: /dist/
+Disallow: /build/
+Disallow: /*.json$
+
+# Block thank you pages from indexing
+Disallow: /thank-you/
+Disallow: /it/thank-you/
+Disallow: /grazie/
+
+# Block search and filter pages
+Disallow: /search
+Disallow: /filter
+Disallow: /*?*
+
+# Crawl delay for better server performance
 Crawl-delay: 1
 
 # Specific directives for major search engines
@@ -15,8 +63,8 @@ Crawl-delay: 1
 User-agent: Bingbot
 Crawl-delay: 1
 
-# Sitemap
-Sitemap: https://rayo.consulting/sitemap-index.xml
+# Sitemap location
+Sitemap: https://rayo.consulting/sitemap.xml
 
 # Additional metadata
 # Website: https://rayo.consulting

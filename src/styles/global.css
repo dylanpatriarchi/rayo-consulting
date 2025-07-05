@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -12,6 +14,8 @@
 
 :root {
 	font-family: "Inter", sans-serif;
+	font-feature-settings: "cv11", "ss01";
+	font-variation-settings: "slnt" 0;
 }
 
 @supports (font-variation-settings: normal) {
@@ -21,7 +25,6 @@
 }
 
 :root {
-	--grid-rows-color: rgb(255, 255, 255);
 	--astro-code-color-text: #ffffff;
 	--astro-code-color-background: #131313;
 	--astro-code-token-constant: #8b919b;

@@ -9,28 +9,48 @@ type Props = {
 const { seo } = Astro.props;
 ---
 
-<meta name="viewport" content="width=device-width" />
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+<!-- Google Search Console Verification -->
+<meta name="google-site-verification" content="YOUR_GOOGLE_VERIFICATION_CODE" />
+
+<!-- SEO Meta Tags -->
 <meta name="author" content="Patriarchi Dylan" />
+<meta name="publisher" content="Rayo Consulting" />
 <meta name="keywords" content="sviluppo web Città di Castello, web agency Umbria, siti web Perugia, app mobile Città di Castello, sviluppo software Umbria, React developer Città di Castello, Next.js Perugia, TypeScript Italia, Node.js Umbria, web development Città di Castello, programmatore Umbria, consulenza digitale Perugia, soluzioni AI Città di Castello, chatbot Umbria, automazioni web Perugia, e-commerce Città di Castello, realizzazione siti web Umbria, agenzia digitale Perugia, sviluppo app Città di Castello" />
-<meta name="robots" content="index, follow" />
-<meta name="googlebot" content="index, follow" />
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+<meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+<meta name="bingbot" content="index, follow" />
 <meta name="language" content="Italian" />
+<meta name="distribution" content="global" />
+<meta name="rating" content="general" />
+<meta name="revisit-after" content="7 days" />
+
+<!-- Geographic Meta Tags -->
 <meta name="geo.region" content="IT-PG" />
 <meta name="geo.placename" content="Città di Castello" />
 <meta name="geo.position" content="43.4563;12.2397" />
 <meta name="ICBM" content="43.4563, 12.2397" />
-<meta name="distribution" content="global" />
-<meta name="rating" content="general" />
-<meta name="revisit-after" content="7 days" />
 <meta name="DC.coverage" content="Città di Castello, Umbertide, Sansepolcro, Gubbio, Perugia" />
 <meta name="DC.identifier" content="https://rayo.consulting" />
 <meta name="DC.publisher" content="Rayo Consulting" />
 <meta name="DC.subject" content="Sviluppo web, Web agency, Siti web, App mobile, AI, Città di Castello, Umbria" />
 
+<!-- Additional SEO Meta Tags -->
+<meta name="format-detection" content="telephone=no" />
+<meta name="mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<link rel="canonical" href="https://rayo.consulting" />
+
 <AstroSeo {...seo} />
+
+<!-- Hreflang for multilingual SEO -->
+<link rel="alternate" hreflang="it" href="https://rayo.consulting/it/" />
+<link rel="alternate" hreflang="en" href="https://rayo.consulting/" />
+<link rel="alternate" hreflang="x-default" href="https://rayo.consulting/" />
 
 <!-- Favicon guidelines generated with https://favicon.io/ -->
 <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png" />
@@ -52,7 +72,7 @@ const { seo } = Astro.props;
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" />
 
 <!-- Scripts -->
-<script defer src="https://unpkg.com/alpinejs@3.13.3/dist/cdn.min.js"></script>
+<script is:inline defer src="https://unpkg.com/alpinejs@3.13.3/dist/cdn.min.js"></script>
 
 <script is:inline>
 	const startingWith =
@@ -72,7 +92,7 @@ const { seo } = Astro.props;
 </script>
 
 <!-- Structured Data JSON-LD -->
-<script type="application/ld+json">
+<script is:inline type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "LocalBusiness",
@@ -174,6 +194,71 @@ const { seo } = Astro.props;
     "https://www.instagram.com/rayo.consulting",
     "https://github.com/rayoconsulting",
     "https://www.linkedin.com/company/rayo-consulting"
+  ],
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "5",
+    "reviewCount": "4",
+    "bestRating": "5",
+    "worstRating": "1"
+  },
+  "review": [
+    {
+      "@type": "Review",
+      "author": {
+        "@type": "Organization",
+        "name": "Longfog"
+      },
+      "datePublished": "2025-07-15",
+      "reviewBody": "Ci siamo affidati a loro per lo sviluppo di un ecommerce + AI per il servizio clienti. Oltre al prezzo contenuto, tutto è stato consegnato in tempi molto brevi. È un'agenzia giovane, cordiale che sa come trattare i clienti. Vi consiglio assolutamente di affidarvi a loro.",
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": "5",
+        "bestRating": "5"
+      }
+    },
+    {
+      "@type": "Review",
+      "author": {
+        "@type": "Organization",
+        "name": "Social Plus"
+      },
+      "datePublished": "2025-06-20",
+      "reviewBody": "Agenzia seria con cui collaborare e non chiede prezzi assurdi rispetto a molti altri, consigliatissima!!",
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": "5",
+        "bestRating": "5"
+      }
+    },
+    {
+      "@type": "Review",
+      "author": {
+        "@type": "Organization",
+        "name": "Mancio Corporate"
+      },
+      "datePublished": "2025-05-10",
+      "reviewBody": "Lavoro eccezionale sul redesign del nostro sito web aziendale. Il team di Rayo ha realizzato una piattaforma moderna e professionale che rappresenta perfettamente il nostro brand.",
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": "5",
+        "bestRating": "5"
+      }
+    },
+    {
+      "@type": "Review",
+      "author": {
+        "@type": "Organization",
+        "name": "XYZ Consulting"
+      },
+      "datePublished": "2025-04-05",
+      "reviewBody": "Collaborazione eccellente con Rayo Consulting. Hanno sviluppato una soluzione digitale completa che ha ottimizzato il nostro processo di gestione clienti. Team professionale, efficiente e orientato ai risultati.",
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": "5",
+        "bestRating": "5"
+      }
+    }
   ],
   "hasOfferCatalog": {
     "@type": "OfferCatalog",

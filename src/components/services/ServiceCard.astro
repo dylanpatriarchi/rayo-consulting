@@ -1,0 +1,377 @@
+---
+interface Props {
+  lang?: string;
+}
+
+const {
+  lang = "en"
+} = Astro.props;
+---
+
+<div 
+  class="service-card-overlay"
+  id="service-card-overlay"
+>
+  <div class="service-card-container">
+    <div class="service-card">
+      <button class="close-button" id="close-service-card">
+        <span>×</span>
+      </button>
+      
+      <div class="service-card-content" id="service-card-content">
+        <div class="service-header">
+          <div class="service-icon-large" id="service-icon-large">□</div>
+          <div class="service-title-section">
+            <h2 class="service-title" id="service-title">Service Title</h2>
+            <span class="service-price" id="service-price">€0</span>
+          </div>
+        </div>
+
+        <div class="service-description">
+          <p id="service-description">Service description...</p>
+        </div>
+
+        <div class="service-features">
+          <h3 class="features-title">
+            {lang === "it" ? "Caratteristiche incluse:" : "Features included:"}
+          </h3>
+          <div class="features-grid" id="features-grid">
+            <!-- Features will be populated dynamically -->
+          </div>
+        </div>
+
+        <div class="service-actions">
+          <a 
+            href={lang === "it" ? "/it/contact" : "/contact"}
+            class="cta-button primary"
+          >
+            {lang === "it" ? "Richiedi Preventivo" : "Get Quote"}
+          </a>
+          <button class="cta-button secondary" id="close-service-card-alt">
+            {lang === "it" ? "Chiudi" : "Close"}
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .service-card-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(10px);
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+  }
+
+  .service-card-overlay.visible {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .service-card-container {
+    transform: scale(0.8) translateY(50px);
+    transition: transform 0.3s ease;
+    max-width: 600px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+  }
+
+  .service-card-overlay.visible .service-card-container {
+    transform: scale(1) translateY(0);
+  }
+
+  .service-card {
+    background: rgba(0, 0, 0, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    padding: 2rem;
+    position: relative;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+  }
+
+  .close-button {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    z-index: 1;
+  }
+
+  .close-button:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: scale(1.1);
+  }
+
+  .close-button span {
+    color: white;
+    font-size: 1.5rem;
+    line-height: 1;
+  }
+
+  .service-header {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .service-icon-large {
+    font-size: 4rem;
+    color: white;
+    font-family: 'Inter', monospace;
+    animation: float 3s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+
+  .service-title-section {
+    flex: 1;
+  }
+
+  .service-title {
+    font-size: 2rem;
+    font-weight: bold;
+    color: white;
+    margin: 0 0 0.5rem 0;
+    font-family: 'Inter', sans-serif;
+  }
+
+  .service-price {
+    font-size: 1.5rem;
+    color: rgba(255, 255, 255, 0.8);
+    font-family: 'Inter', monospace;
+    font-weight: 600;
+  }
+
+  .service-description {
+    margin-bottom: 2rem;
+  }
+
+  .service-description p {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 1.125rem;
+    line-height: 1.6;
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+  }
+
+  .service-features {
+    margin-bottom: 2rem;
+  }
+
+  .features-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: white;
+    margin: 0 0 1rem 0;
+    font-family: 'Inter', sans-serif;
+  }
+
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 0.75rem;
+  }
+
+  .feature-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.5rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    transition: all 0.2s ease;
+  }
+
+  .feature-item:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateX(4px);
+  }
+
+  .feature-icon {
+    color: #4ade80;
+    font-weight: bold;
+    font-size: 1rem;
+  }
+
+  .feature-text {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 0.875rem;
+    font-family: 'Inter', sans-serif;
+  }
+
+  .service-actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .cta-button {
+    padding: 0.875rem 2rem;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    transition: all 0.2s ease;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Inter', sans-serif;
+    border: none;
+  }
+
+  .cta-button.primary {
+    background: white;
+    color: black;
+  }
+
+  .cta-button.primary:hover {
+    background: rgba(255, 255, 255, 0.9);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(255, 255, 255, 0.2);
+  }
+
+  .cta-button.secondary {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+
+  .cta-button.secondary:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .service-card-overlay {
+      padding: 1rem;
+    }
+
+    .service-card {
+      padding: 1.5rem;
+    }
+
+    .service-header {
+      flex-direction: column;
+      text-align: center;
+      gap: 1rem;
+    }
+
+    .service-icon-large {
+      font-size: 3rem;
+    }
+
+    .service-title {
+      font-size: 1.75rem;
+    }
+
+    .service-price {
+      font-size: 1.25rem;
+    }
+
+    .features-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .service-actions {
+      flex-direction: column;
+    }
+
+    .cta-button {
+      width: 100%;
+    }
+  }
+</style>
+
+<script>
+  class ServiceCard {
+    private overlay: HTMLElement | null;
+    private closeButtons: (HTMLElement | null)[];
+
+    constructor() {
+      this.overlay = document.getElementById('service-card-overlay');
+      this.closeButtons = [
+        document.getElementById('close-service-card'),
+        document.getElementById('close-service-card-alt')
+      ];
+      
+      this.init();
+    }
+
+    init() {
+      if (!this.overlay) return;
+
+      // Close button handlers
+      this.closeButtons.forEach(button => {
+        if (button) {
+          button.addEventListener('click', () => this.hide());
+        }
+      });
+
+      // Click outside to close
+      this.overlay.addEventListener('click', (e) => {
+        if (e.target === this.overlay) {
+          this.hide();
+        }
+      });
+
+      // Escape key to close
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && this.overlay?.classList.contains('visible')) {
+          this.hide();
+        }
+      });
+    }
+
+    show() {
+      if (this.overlay) {
+        this.overlay.classList.add('visible');
+        document.body.style.overflow = 'hidden';
+      }
+    }
+
+    hide() {
+      if (this.overlay) {
+        this.overlay.classList.remove('visible');
+        document.body.style.overflow = '';
+      }
+    }
+  }
+
+  // Initialize when DOM is ready
+  document.addEventListener('DOMContentLoaded', () => {
+    new ServiceCard();
+  });
+</script> 

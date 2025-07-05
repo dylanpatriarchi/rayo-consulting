@@ -11,7 +11,7 @@ const translatePath = useTranslatedPath(lang);
 <section id="hero" class="section dark-section hero min-h-screen relative overflow-hidden">
 	<!-- Video Background -->
 	<video 
-		class="absolute inset-0 w-full h-full object-cover z-0"
+		class="absolute inset-0 w-full h-full object-cover z-0 grayscale"
 		src={backgroundVideo}
 		autoplay 
 		loop 
@@ -19,15 +19,16 @@ const translatePath = useTranslatedPath(lang);
 		playsinline
 	></video>
 	
-	<!-- Black Overlay -->
+	<!-- Black Overlay with Bottom Gradient -->
 	<div class="absolute inset-0 bg-black/60 z-10"></div>
+	<div class="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-black/80 to-transparent z-15"></div>
 	
 	<div class="mx-auto flex h-full flex-col relative z-20">
 		<div class="relative flex flex-1 flex-col justify-center gap-8 rounded-lg py-10 pb-28 md:gap-20 md:pb-10 lg:rounded-2xl">
 			<div class="flex justify-center">
 				<h1 class="sr-only">Rayo Consulting</h1>
 				<div class="title-svg w-[min(90rem,90vw)] flex justify-center">
-					<h2 id="rayo-title" class="font-mono text-[4rem] font-bold uppercase tracking-wide text-white sm:text-[6rem] sm:tracking-widest md:text-[12rem] lg:text-[16rem] xl:text-[20rem]">
+					<h2 id="rayo-title" class="shiny-text font-sans text-[4rem] font-black uppercase tracking-wide text-white sm:text-[6rem] sm:tracking-widest md:text-[12rem] lg:text-[16rem] xl:text-[20rem]">
 						RAYO
 					</h2>
 				</div>
@@ -60,8 +61,30 @@ const translatePath = useTranslatedPath(lang);
 		opacity: 0;
 	}
 
-	#rayo-title {
-		/* Testo pulito senza effetti */
+	/* Shiny Text Effect */
+	.shiny-text {
+		color: #b5b5b5a4;
+		background: linear-gradient(
+			120deg,
+			rgba(255, 255, 255, 0) 40%,
+			rgba(255, 255, 255, 0.8) 50%,
+			rgba(255, 255, 255, 0) 60%
+		);
+		background-size: 200% 100%;
+		-webkit-background-clip: text;
+		background-clip: text;
+		display: inline-block;
+		animation: shine 5s linear infinite;
+		animation-delay: 1s; /* Delay per far apparire prima il testo */
+	}
+
+	@keyframes shine {
+		0% {
+			background-position: 100%;
+		}
+		100% {
+			background-position: -100%;
+		}
 	}
 
 	/* Hero appearance */

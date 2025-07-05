@@ -1,0 +1,148 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import Title from "@components/global/Title.astro";
+import Masonry from "@components/work/Masonry.astro";
+
+const testimonials = [
+	{
+		id: 1,
+		company: "Longfog",
+		sector: "E-commerce & AI",
+		content: "Ci siamo affidati a loro per lo sviluppo di un ecommerce + AI per il servizio clienti. Oltre al prezzo contenuto, tutto è stato consegnato in tempi molto brevi. È un'agenzia giovane, cordiale che sa come trattare i clienti. Vi consiglio assolutamente di affidarvi a loro.",
+		rating: 5,
+		date: "Luglio 2025",
+		project: "E-commerce con AI per servizio clienti"
+	},
+	{
+		id: 2,
+		company: "Social Plus",
+		sector: "Marketing Digitale",
+		content: "Agenzia seria con cui collaborare e non chiede prezzi assurdi rispetto a molti altri, consigliatissima!!",
+		rating: 5,
+		date: "Giugno 2025",
+		project: "Piattaforma marketing digitale"
+	},
+	{
+		id: 3,
+		company: "Mancio Corporate",
+		sector: "Servizi Aziendali",
+		content: "Lavoro eccezionale sul redesign del nostro sito web aziendale. Il team di Rayo ha realizzato una piattaforma moderna e professionale che rappresenta perfettamente il nostro brand. La loro attenzione ai dettagli e competenza tecnica ha superato le nostre aspettative.",
+		rating: 5,
+		date: "Maggio 2025",
+		project: "Redesign sito web aziendale"
+	},
+	{
+		id: 4,
+		company: "XYZ Consulting",
+		sector: "Consulenza Digitale",
+		content: "Collaborazione eccellente con Rayo Consulting. Hanno sviluppato una soluzione digitale completa che ha ottimizzato il nostro processo di gestione clienti. Team professionale, efficiente e orientato ai risultati.",
+		rating: 5,
+		date: "Aprile 2025",
+		project: "Sistema gestione clienti"
+	}
+];
+---
+
+<BaseLayout
+	seo={{
+		title: "Recensioni Clienti - Rayo Consulting",
+		description: "Leggi cosa dicono i nostri clienti del lavoro con Rayo Consulting. Testimonianze reali di clienti soddisfatti che hanno raggiunto risultati eccezionali con le nostre soluzioni digitali."
+	}}
+>
+	<section class="section min-h-screen">
+		<div class="col-span-full">
+			<div class="testimonials-page-layout">
+				<div class="testimonials-page-header">
+					<Title 
+						title="Recensioni Clienti"
+						subtitle="Cosa dicono i nostri clienti del lavoro con Rayo Consulting"
+					/>
+				</div>
+
+				<div class="testimonials-container">
+					<Masonry testimonials={testimonials} />
+				</div>
+
+				<div class="testimonials-page-cta">
+					<a href="/it/contact" class="testimonials-page-button">
+						Richiedi la Tua Consulenza Gratuita
+					</a>
+				</div>
+			</div>
+		</div>
+	</section>
+</BaseLayout>
+
+<style>
+	.testimonials-page-layout {
+		padding: 4rem 1.5rem;
+		min-height: 100vh;
+		max-width: 1400px;
+		margin: 0 auto;
+	}
+
+	.testimonials-page-header {
+		text-align: center;
+		max-width: 800px;
+		margin: 0 auto 4rem auto;
+	}
+
+	.testimonials-container {
+		max-width: 1400px;
+		margin: 0 auto 4rem auto;
+	}
+
+	.testimonials-page-cta {
+		text-align: center;
+	}
+
+	.testimonials-page-button {
+		display: inline-block;
+		padding: 1rem 2.5rem;
+		background: rgba(255, 255, 255, 0.05);
+		color: white;
+		text-decoration: none;
+		font-family: 'Inter', sans-serif;
+		font-weight: 500;
+		font-size: 1rem;
+		border: 1px solid rgba(255, 255, 255, 0.1);
+		border-radius: 2rem;
+		transition: all 0.3s ease;
+		backdrop-filter: blur(10px);
+	}
+
+	.testimonials-page-button:hover {
+		background: rgba(255, 255, 255, 0.1);
+		border-color: rgba(255, 255, 255, 0.2);
+		transform: translateY(-2px);
+	}
+
+	@media (min-width: 768px) {
+		.testimonials-page-layout {
+			padding: 4rem 2rem;
+		}
+	}
+
+	@media (min-width: 1024px) {
+		.testimonials-page-layout {
+			padding: 6rem 3rem;
+		}
+	}
+
+	@media (min-width: 1400px) {
+		.testimonials-page-layout {
+			padding: 6rem 4rem;
+		}
+	}
+
+	@media (max-width: 480px) {
+		.testimonials-page-layout {
+			padding: 3rem 1rem;
+		}
+
+		.testimonials-page-button {
+			padding: 0.875rem 2rem;
+			font-size: 0.9rem;
+		}
+	}
+</style> 

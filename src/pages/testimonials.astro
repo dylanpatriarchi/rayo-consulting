@@ -1,0 +1,148 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import Title from "@components/global/Title.astro";
+import Masonry from "@components/work/Masonry.astro";
+
+const testimonials = [
+	{
+		id: 1,
+		company: "Longfog",
+		sector: "E-commerce & AI",
+		content: "We relied on them for the development of an ecommerce + customer service AI. In addition to the low price, everything was delivered in a very short time. It is a young, friendly agency that knows how to treat customers. I absolutely recommend you to rely on them.",
+		rating: 5,
+		date: "July 2025",
+		project: "E-commerce with AI customer service"
+	},
+	{
+		id: 2,
+		company: "Social Plus",
+		sector: "Digital Marketing",
+		content: "Serious agency to collaborate with and does not ask for absurd prices compared to many others, highly recommended!!",
+		rating: 5,
+		date: "June 2025",
+		project: "Digital marketing platform"
+	},
+	{
+		id: 3,
+		company: "Mancio Corporate",
+		sector: "Business Services",
+		content: "Exceptional work on our corporate website redesign. The team at Rayo delivered a modern, professional platform that perfectly represents our brand. Their attention to detail and technical expertise exceeded our expectations.",
+		rating: 5,
+		date: "May 2025",
+		project: "Corporate website redesign"
+	},
+	{
+		id: 4,
+		company: "XYZ Consulting",
+		sector: "Digital Consulting",
+		content: "Outstanding collaboration with Rayo Consulting. They developed a comprehensive digital solution that streamlined our client management process. Professional, efficient, and results-driven team.",
+		rating: 5,
+		date: "April 2025",
+		project: "Client management system"
+	}
+];
+---
+
+<BaseLayout
+	seo={{
+		title: "Client Testimonials - Rayo Consulting",
+		description: "Read what our clients say about working with Rayo Consulting. Real testimonials from satisfied customers who achieved exceptional results with our digital solutions."
+	}}
+>
+	<section class="section min-h-screen">
+		<div class="col-span-full">
+			<div class="testimonials-page-layout">
+				<div class="testimonials-page-header">
+					<Title 
+						title="Client Testimonials"
+						subtitle="What our clients say about working with Rayo Consulting"
+					/>
+				</div>
+
+				<div class="testimonials-container">
+					<Masonry testimonials={testimonials} />
+				</div>
+
+				<div class="testimonials-page-cta">
+					<a href="/contact" class="testimonials-page-button">
+						Get Your Free Consultation
+					</a>
+				</div>
+			</div>
+		</div>
+	</section>
+</BaseLayout>
+
+<style>
+	.testimonials-page-layout {
+		padding: 4rem 1.5rem;
+		min-height: 100vh;
+		max-width: 1400px;
+		margin: 0 auto;
+	}
+
+	.testimonials-page-header {
+		text-align: center;
+		max-width: 800px;
+		margin: 0 auto 4rem auto;
+	}
+
+	.testimonials-container {
+		max-width: 1400px;
+		margin: 0 auto 4rem auto;
+	}
+
+	.testimonials-page-cta {
+		text-align: center;
+	}
+
+	.testimonials-page-button {
+		display: inline-block;
+		padding: 1rem 2.5rem;
+		background: rgba(255, 255, 255, 0.05);
+		color: white;
+		text-decoration: none;
+		font-family: 'Inter', sans-serif;
+		font-weight: 500;
+		font-size: 1rem;
+		border: 1px solid rgba(255, 255, 255, 0.1);
+		border-radius: 2rem;
+		transition: all 0.3s ease;
+		backdrop-filter: blur(10px);
+	}
+
+	.testimonials-page-button:hover {
+		background: rgba(255, 255, 255, 0.1);
+		border-color: rgba(255, 255, 255, 0.2);
+		transform: translateY(-2px);
+	}
+
+	@media (min-width: 768px) {
+		.testimonials-page-layout {
+			padding: 4rem 2rem;
+		}
+	}
+
+	@media (min-width: 1024px) {
+		.testimonials-page-layout {
+			padding: 6rem 3rem;
+		}
+	}
+
+	@media (min-width: 1400px) {
+		.testimonials-page-layout {
+			padding: 6rem 4rem;
+		}
+	}
+
+	@media (max-width: 480px) {
+		.testimonials-page-layout {
+			padding: 3rem 1rem;
+		}
+
+		.testimonials-page-button {
+			padding: 0.875rem 2rem;
+			font-size: 0.9rem;
+		}
+	}
+</style> 

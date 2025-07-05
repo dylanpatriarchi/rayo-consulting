@@ -1,0 +1,286 @@
+---
+interface Props {
+	testimonials: Array<{
+		id: number;
+		company: string;
+		sector: string;
+		content: string;
+		rating: number;
+		date?: string;
+		project: string;
+	}>;
+}
+
+const { testimonials } = Astro.props;
+---
+
+<div class="masonry-container" id="masonry-container">
+	{testimonials.map((testimonial, index) => (
+		<div class="masonry-item" data-index={index}>
+			<div class="quote-icon">"</div>
+			<p class="testimonial-text">{testimonial.content}</p>
+			<div class="testimonial-author">
+				<div class="author-avatar">
+					<span class="avatar-text">
+						{testimonial.company.charAt(0)}
+					</span>
+				</div>
+				<div class="author-info">
+					<h4 class="author-name">{testimonial.company}</h4>
+					<p class="author-role">{testimonial.sector}</p>
+					<p class="author-company">{testimonial.project}</p>
+					{testimonial.date && (
+						<p class="testimonial-date">{testimonial.date}</p>
+					)}
+				</div>
+			</div>
+		</div>
+	))}
+</div>
+
+<script>
+	// Animate masonry items on scroll
+	document.addEventListener('DOMContentLoaded', function() {
+		const masonryItems = document.querySelectorAll('.masonry-item');
+		
+		const observer = new IntersectionObserver((entries) => {
+			entries.forEach((entry, index) => {
+				if (entry.isIntersecting) {
+					setTimeout(() => {
+						entry.target.classList.add('animate-in');
+					}, index * 100);
+				}
+			});
+		}, {
+			threshold: 0.1,
+			rootMargin: '0px 0px -50px 0px'
+		});
+
+		masonryItems.forEach(item => {
+			observer.observe(item);
+		});
+	});
+</script>
+
+<style>
+	.masonry-container {
+		display: grid;
+		grid-template-columns: 1fr;
+		gap: 1.5rem;
+		width: 100%;
+	}
+
+	.masonry-item {
+		background: rgba(255, 255, 255, 0.03);
+		border: 1px solid rgba(255, 255, 255, 0.08);
+		border-radius: 1.5rem;
+		padding: 2rem;
+		position: relative;
+		transition: all 0.4s ease;
+		opacity: 0;
+		transform: translateY(20px);
+		break-inside: avoid;
+		page-break-inside: avoid;
+	}
+
+	.masonry-item.animate-in {
+		opacity: 1;
+		transform: translateY(0);
+	}
+
+	.masonry-item:hover {
+		background: rgba(255, 255, 255, 0.06);
+		border-color: rgba(255, 255, 255, 0.15);
+		transform: translateY(-3px);
+	}
+
+	.quote-icon {
+		font-size: 3rem;
+		color: rgba(255, 255, 255, 0.1);
+		font-family: 'Inter', sans-serif;
+		font-weight: 300;
+		line-height: 1;
+		margin-bottom: 1rem;
+		display: block;
+	}
+
+	.testimonial-text {
+		color: rgba(255, 255, 255, 0.9);
+		font-size: 1rem;
+		line-height: 1.6;
+		font-family: 'Inter', sans-serif;
+		margin: 0 0 1.5rem 0;
+		font-weight: 400;
+	}
+
+	.testimonial-author {
+		display: flex;
+		align-items: flex-start;
+		gap: 1rem;
+		margin-top: auto;
+	}
+
+	.author-avatar {
+		width: 3rem;
+		height: 3rem;
+		background: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.05) 100%);
+		border: 1px solid rgba(255, 255, 255, 0.1);
+		border-radius: 1rem;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		flex-shrink: 0;
+	}
+
+	.avatar-text {
+		color: white;
+		font-weight: 700;
+		font-size: 1.25rem;
+		font-family: 'Inter', sans-serif;
+	}
+
+	.author-info {
+		flex: 1;
+	}
+
+	.author-name {
+		color: white;
+		font-size: 1rem;
+		font-weight: 600;
+		margin: 0 0 0.25rem 0;
+		font-family: 'Inter', sans-serif;
+	}
+
+	.author-role {
+		color: rgba(255, 255, 255, 0.7);
+		font-size: 0.875rem;
+		margin: 0 0 0.125rem 0;
+		font-family: 'Inter', sans-serif;
+		font-weight: 500;
+	}
+
+	.author-company {
+		color: rgba(255, 255, 255, 0.5);
+		font-size: 0.75rem;
+		margin: 0;
+		font-family: 'Inter', sans-serif;
+		font-weight: 400;
+		font-style: italic;
+	}
+
+	.testimonial-date {
+		color: rgba(255, 255, 255, 0.4);
+		font-size: 0.7rem;
+		margin: 0.25rem 0 0 0;
+		font-family: 'Inter', sans-serif;
+		font-weight: 400;
+		font-style: italic;
+	}
+
+	/* Tablet Layout */
+	@media (min-width: 768px) {
+		.masonry-container {
+			grid-template-columns: repeat(2, 1fr);
+			gap: 2rem;
+		}
+
+		.masonry-item {
+			padding: 2.5rem;
+		}
+
+		.testimonial-text {
+			font-size: 1.125rem;
+			line-height: 1.7;
+		}
+
+		.quote-icon {
+			font-size: 4rem;
+		}
+	}
+
+	/* Desktop Layout */
+	@media (min-width: 1024px) {
+		.masonry-container {
+			grid-template-columns: repeat(3, 1fr);
+			gap: 2.5rem;
+		}
+
+		.masonry-item {
+			padding: 2rem;
+		}
+
+		.testimonial-text {
+			font-size: 1rem;
+			line-height: 1.6;
+		}
+	}
+
+	/* Large Desktop */
+	@media (min-width: 1400px) {
+		.masonry-container {
+			gap: 3rem;
+		}
+
+		.masonry-item {
+			padding: 2.5rem;
+		}
+	}
+
+	/* Mobile Responsive */
+	@media (max-width: 767px) {
+		.masonry-container {
+			gap: 1.5rem;
+		}
+
+		.masonry-item {
+			padding: 1.5rem;
+		}
+
+		.quote-icon {
+			font-size: 2.5rem;
+		}
+
+		.testimonial-text {
+			font-size: 0.95rem;
+		}
+
+		.author-avatar {
+			width: 2.5rem;
+			height: 2.5rem;
+		}
+
+		.avatar-text {
+			font-size: 1rem;
+		}
+
+		.author-name {
+			font-size: 0.9rem;
+		}
+
+		.author-role {
+			font-size: 0.8rem;
+		}
+
+		.author-company {
+			font-size: 0.7rem;
+		}
+	}
+
+	@media (max-width: 480px) {
+		.masonry-item {
+			padding: 1.25rem;
+		}
+
+		.quote-icon {
+			font-size: 2rem;
+		}
+
+		.testimonial-text {
+			font-size: 0.9rem;
+		}
+
+		.avatar-text {
+			font-size: 0.875rem;
+		}
+	}
+</style> 

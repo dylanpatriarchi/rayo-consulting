@@ -7,137 +7,413 @@ const t = useTranslations(lang);
 const translatePath = useTranslatedPath(lang);
 ---
 
-<section>
-	<div class="mx-auto max-w-7xl px-8 py-12 md:px-12 lg:px-32 lg:py-32">
-		<div>
+<section class="cookies-section">
+	<div class="cookies-layout">
+		<div class="cookies-header">
 			<Title 
 				title="Cookie Policy" 
 				subtitle={lang === "it" ? "Ultimo aggiornamento: 01 Gennaio 2025" : "Last updated: January 01, 2025"} 
-				class="pb-10 pt-20 uppercase" 
 			/>
 		</div>
-		<div class="prose-styles mt-12 lg:mt-24">
+		
+		<div class="cookies-content">
 			{lang === "it" ? (
 				<>
-					<h2>1. Cosa sono i Cookie</h2>
-					<p>
-						I cookie sono piccoli file di testo che vengono memorizzati sul tuo dispositivo quando visiti il nostro sito web. 
-						Ci aiutano a fornire una migliore esperienza utente e a comprendere come viene utilizzato il nostro sito.
-					</p>
+					<div class="cookies-block">
+						<h2>1. Cosa sono i Cookie</h2>
+						<p>
+							I cookie sono piccoli file di testo che vengono memorizzati sul tuo dispositivo quando visiti il nostro sito web. 
+							Ci aiutano a fornire una migliore esperienza utente e a comprendere come viene utilizzato il nostro sito.
+						</p>
+					</div>
 
-					<h2>2. Tipi di Cookie Utilizzati</h2>
-					
-					<h3>Cookie Tecnici (Necessari)</h3>
-					<p>Questi cookie sono essenziali per il funzionamento del sito web:</p>
-					<ul>
-						<li><strong>Cookie di sessione</strong>: Mantengono la tua sessione attiva durante la navigazione</li>
-						<li><strong>Cookie di preferenze</strong>: Ricordano le tue impostazioni (es. lingua selezionata)</li>
-						<li><strong>Cookie di sicurezza</strong>: Proteggono dalle attività fraudolente</li>
-					</ul>
+					<div class="cookies-block">
+						<h2>2. Tipi di Cookie Utilizzati</h2>
+						
+						<div class="cookie-type">
+							<h3>Cookie Tecnici (Necessari)</h3>
+							<p>Questi cookie sono essenziali per il funzionamento del sito web:</p>
+							<ul>
+								<li><strong>Cookie di sessione</strong>: Mantengono la tua sessione attiva durante la navigazione</li>
+								<li><strong>Cookie di preferenze</strong>: Ricordano le tue impostazioni (es. lingua selezionata)</li>
+								<li><strong>Cookie di sicurezza</strong>: Proteggono dalle attività fraudolente</li>
+							</ul>
+						</div>
 
-					<h3>Cookie Analitici</h3>
-					<p>Utilizziamo Google Analytics per comprendere come i visitatori interagiscono con il nostro sito:</p>
-					<ul>
-						<li><strong>_ga</strong>: Distingue gli utenti unici (durata: 2 anni)</li>
-						<li><strong>_ga_*</strong>: Mantiene lo stato della sessione (durata: 2 anni)</li>
-						<li><strong>_gid</strong>: Distingue gli utenti unici (durata: 24 ore)</li>
-					</ul>
+						<div class="cookie-type">
+							<h3>Cookie Analitici</h3>
+							<p>Utilizziamo Google Analytics per comprendere come i visitatori interagiscono con il nostro sito:</p>
+							<ul>
+								<li><strong>_ga</strong>: Distingue gli utenti unici (durata: 2 anni)</li>
+								<li><strong>_ga_*</strong>: Mantiene lo stato della sessione (durata: 2 anni)</li>
+								<li><strong>_gid</strong>: Distingue gli utenti unici (durata: 24 ore)</li>
+							</ul>
+						</div>
+					</div>
 
-					<h2>3. Gestione dei Cookie</h2>
-					<p>Puoi gestire i cookie attraverso le impostazioni del tuo browser:</p>
-					<ul>
-						<li><strong>Chrome</strong>: Impostazioni > Privacy e sicurezza > Cookie</li>
-						<li><strong>Firefox</strong>: Opzioni > Privacy e sicurezza > Cookie</li>
-						<li><strong>Safari</strong>: Preferenze > Privacy > Cookie</li>
-						<li><strong>Edge</strong>: Impostazioni > Privacy, ricerca e servizi > Cookie</li>
-					</ul>
+					<div class="cookies-block">
+						<h2>3. Gestione dei Cookie</h2>
+						<p>Puoi gestire i cookie attraverso le impostazioni del tuo browser:</p>
+						<ul>
+							<li><strong>Chrome</strong>: Impostazioni > Privacy e sicurezza > Cookie</li>
+							<li><strong>Firefox</strong>: Opzioni > Privacy e sicurezza > Cookie</li>
+							<li><strong>Safari</strong>: Preferenze > Privacy > Cookie</li>
+							<li><strong>Edge</strong>: Impostazioni > Privacy, ricerca e servizi > Cookie</li>
+						</ul>
+					</div>
 
-					<h2>4. Cookie di Terze Parti</h2>
-					<p>Il nostro sito può utilizzare cookie di terze parti per:</p>
-					<ul>
-						<li>Google Analytics (analisi del traffico)</li>
-						<li>Font di Google (visualizzazione dei caratteri)</li>
-					</ul>
+					<div class="cookies-block">
+						<h2>4. Cookie di Terze Parti</h2>
+						<p>Il nostro sito può utilizzare cookie di terze parti per:</p>
+						<ul>
+							<li>Google Analytics (analisi del traffico)</li>
+							<li>Font di Google (visualizzazione dei caratteri)</li>
+						</ul>
+					</div>
 
-					<h2>5. Consenso ai Cookie</h2>
-					<p>
-						Continuando a navigare sul nostro sito, acconsenti all'uso dei cookie descritti in questa policy. 
-						Puoi modificare le tue preferenze in qualsiasi momento attraverso le impostazioni del browser.
-					</p>
+					<div class="cookies-block">
+						<h2>5. Consenso ai Cookie</h2>
+						<p>
+							Continuando a navigare sul nostro sito, acconsenti all'uso dei cookie descritti in questa policy. 
+							Puoi modificare le tue preferenze in qualsiasi momento attraverso le impostazioni del browser.
+						</p>
+					</div>
 
-					<h2>6. Aggiornamenti alla Policy</h2>
-					<p>
-						Questa Cookie Policy può essere aggiornata periodicamente. Ti consigliamo di consultarla regolarmente 
-						per rimanere informato su come utilizziamo i cookie.
-					</p>
+					<div class="cookies-block">
+						<h2>6. Aggiornamenti alla Policy</h2>
+						<p>
+							Questa Cookie Policy può essere aggiornata periodicamente. Ti consigliamo di consultarla regolarmente 
+							per rimanere informato su come utilizziamo i cookie.
+						</p>
+					</div>
 
-					<h2>7. Contatti</h2>
-					<p>
-						Per domande sui cookie o su questa policy, contattaci all'indirizzo: 
-						<a href="mailto:info@rayoconsulting.org">info@rayoconsulting.org</a>
-					</p>
+					<div class="cookies-block">
+						<h2>7. Contatti</h2>
+						<p>
+							Per domande sui cookie o su questa policy, contattaci all'indirizzo: 
+							<a href="mailto:info@rayoconsulting.org">info@rayoconsulting.org</a>
+						</p>
+					</div>
 				</>
 			) : (
 				<>
-					<h2>1. What are Cookies</h2>
-					<p>
-						Cookies are small text files that are stored on your device when you visit our website. 
-						They help us provide a better user experience and understand how our site is used.
-					</p>
+					<div class="cookies-block">
+						<h2>1. What are Cookies</h2>
+						<p>
+							Cookies are small text files that are stored on your device when you visit our website. 
+							They help us provide a better user experience and understand how our site is used.
+						</p>
+					</div>
 
-					<h2>2. Types of Cookies Used</h2>
-					
-					<h3>Technical Cookies (Necessary)</h3>
-					<p>These cookies are essential for the website to function:</p>
-					<ul>
-						<li><strong>Session cookies</strong>: Keep your session active during navigation</li>
-						<li><strong>Preference cookies</strong>: Remember your settings (e.g., selected language)</li>
-						<li><strong>Security cookies</strong>: Protect against fraudulent activities</li>
-					</ul>
+					<div class="cookies-block">
+						<h2>2. Types of Cookies Used</h2>
+						
+						<div class="cookie-type">
+							<h3>Technical Cookies (Necessary)</h3>
+							<p>These cookies are essential for the website to function:</p>
+							<ul>
+								<li><strong>Session cookies</strong>: Keep your session active during navigation</li>
+								<li><strong>Preference cookies</strong>: Remember your settings (e.g., selected language)</li>
+								<li><strong>Security cookies</strong>: Protect against fraudulent activities</li>
+							</ul>
+						</div>
 
-					<h3>Analytics Cookies</h3>
-					<p>We use Google Analytics to understand how visitors interact with our site:</p>
-					<ul>
-						<li><strong>_ga</strong>: Distinguishes unique users (duration: 2 years)</li>
-						<li><strong>_ga_*</strong>: Maintains session state (duration: 2 years)</li>
-						<li><strong>_gid</strong>: Distinguishes unique users (duration: 24 hours)</li>
-					</ul>
+						<div class="cookie-type">
+							<h3>Analytics Cookies</h3>
+							<p>We use Google Analytics to understand how visitors interact with our site:</p>
+							<ul>
+								<li><strong>_ga</strong>: Distinguishes unique users (duration: 2 years)</li>
+								<li><strong>_ga_*</strong>: Maintains session state (duration: 2 years)</li>
+								<li><strong>_gid</strong>: Distinguishes unique users (duration: 24 hours)</li>
+							</ul>
+						</div>
+					</div>
 
-					<h2>3. Cookie Management</h2>
-					<p>You can manage cookies through your browser settings:</p>
-					<ul>
-						<li><strong>Chrome</strong>: Settings > Privacy and security > Cookies</li>
-						<li><strong>Firefox</strong>: Options > Privacy & Security > Cookies</li>
-						<li><strong>Safari</strong>: Preferences > Privacy > Cookies</li>
-						<li><strong>Edge</strong>: Settings > Privacy, search, and services > Cookies</li>
-					</ul>
+					<div class="cookies-block">
+						<h2>3. Cookie Management</h2>
+						<p>You can manage cookies through your browser settings:</p>
+						<ul>
+							<li><strong>Chrome</strong>: Settings > Privacy and security > Cookies</li>
+							<li><strong>Firefox</strong>: Options > Privacy & Security > Cookies</li>
+							<li><strong>Safari</strong>: Preferences > Privacy > Cookies</li>
+							<li><strong>Edge</strong>: Settings > Privacy, search, and services > Cookies</li>
+						</ul>
+					</div>
 
-					<h2>4. Third-Party Cookies</h2>
-					<p>Our site may use third-party cookies for:</p>
-					<ul>
-						<li>Google Analytics (traffic analysis)</li>
-						<li>Google Fonts (font display)</li>
-					</ul>
+					<div class="cookies-block">
+						<h2>4. Third-Party Cookies</h2>
+						<p>Our site may use third-party cookies for:</p>
+						<ul>
+							<li>Google Analytics (traffic analysis)</li>
+							<li>Google Fonts (font display)</li>
+						</ul>
+					</div>
 
-					<h2>5. Cookie Consent</h2>
-					<p>
-						By continuing to browse our site, you consent to the use of cookies described in this policy. 
-						You can change your preferences at any time through your browser settings.
-					</p>
+					<div class="cookies-block">
+						<h2>5. Cookie Consent</h2>
+						<p>
+							By continuing to browse our site, you consent to the use of cookies described in this policy. 
+							You can change your preferences at any time through your browser settings.
+						</p>
+					</div>
 
-					<h2>6. Policy Updates</h2>
-					<p>
-						This Cookie Policy may be updated periodically. We recommend checking it regularly 
-						to stay informed about how we use cookies.
-					</p>
+					<div class="cookies-block">
+						<h2>6. Policy Updates</h2>
+						<p>
+							This Cookie Policy may be updated periodically. We recommend checking it regularly 
+							to stay informed about how we use cookies.
+						</p>
+					</div>
 
-					<h2>7. Contact</h2>
-					<p>
-						For questions about cookies or this policy, contact us at: 
-						<a href="mailto:info@rayoconsulting.org">info@rayoconsulting.org</a>
-					</p>
+					<div class="cookies-block">
+						<h2>7. Contact</h2>
+						<p>
+							For questions about cookies or this policy, contact us at: 
+							<a href="mailto:info@rayoconsulting.org">info@rayoconsulting.org</a>
+						</p>
+					</div>
 				</>
 			)}
 		</div>
 	</div>
-</section> 
+</section>
+
+<style>
+	.cookies-section {
+		min-height: 100vh;
+		position: relative;
+	}
+
+	.cookies-layout {
+		width: 100vw;
+		margin-left: calc(-50vw + 50%);
+		padding: 4rem 2rem;
+		background: linear-gradient(135deg, rgba(0, 0, 0, 0.05) 0%, rgba(0, 0, 0, 0.15) 100%);
+	}
+
+	.cookies-header {
+		text-align: center;
+		max-width: 800px;
+		margin: 0 auto 4rem auto;
+	}
+
+	.cookies-content {
+		max-width: 800px;
+		margin: 0 auto;
+		display: flex;
+		flex-direction: column;
+		gap: 2.5rem;
+	}
+
+	.cookies-block {
+		background: rgba(255, 255, 255, 0.03);
+		border: 1px solid rgba(255, 255, 255, 0.08);
+		border-radius: 1rem;
+		padding: 2rem;
+		backdrop-filter: blur(10px);
+		transition: all 0.3s ease;
+	}
+
+	.cookies-block:hover {
+		background: rgba(255, 255, 255, 0.05);
+		border-color: rgba(255, 255, 255, 0.12);
+	}
+
+	.cookies-block h2 {
+		color: white;
+		font-size: 1.5rem;
+		font-weight: 600;
+		margin: 0 0 1rem 0;
+		font-family: 'Inter', sans-serif;
+		line-height: 1.3;
+	}
+
+	.cookies-block h3 {
+		color: rgba(255, 255, 255, 0.9);
+		font-size: 1.25rem;
+		font-weight: 600;
+		margin: 1.5rem 0 0.75rem 0;
+		font-family: 'Inter', sans-serif;
+		line-height: 1.3;
+	}
+
+	.cookies-block p {
+		color: rgba(255, 255, 255, 0.8);
+		font-size: 1rem;
+		line-height: 1.6;
+		margin: 0 0 1rem 0;
+		font-family: 'Inter', sans-serif;
+		font-weight: 400;
+	}
+
+	.cookies-block p:last-child {
+		margin-bottom: 0;
+	}
+
+	.cookies-block ul {
+		color: rgba(255, 255, 255, 0.8);
+		font-size: 1rem;
+		line-height: 1.6;
+		margin: 0;
+		padding-left: 1.5rem;
+		font-family: 'Inter', sans-serif;
+		font-weight: 400;
+	}
+
+	.cookies-block li {
+		margin-bottom: 0.5rem;
+	}
+
+	.cookies-block li:last-child {
+		margin-bottom: 0;
+	}
+
+	.cookie-type {
+		background: rgba(255, 255, 255, 0.03);
+		border: 1px solid rgba(255, 255, 255, 0.08);
+		border-radius: 0.75rem;
+		padding: 1.5rem;
+		margin-top: 1rem;
+	}
+
+	.cookie-type:first-child {
+		margin-top: 1rem;
+	}
+
+	.cookie-type h3 {
+		margin-top: 0;
+		margin-bottom: 0.75rem;
+		font-size: 1.125rem;
+	}
+
+	.cookie-type p {
+		margin-bottom: 0.75rem;
+		font-size: 0.95rem;
+	}
+
+	.cookie-type ul {
+		font-size: 0.9rem;
+	}
+
+	.cookies-block strong {
+		color: white;
+		font-weight: 600;
+	}
+
+	.cookies-block a {
+		color: rgba(255, 255, 255, 0.9);
+		text-decoration: none;
+		border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+		transition: all 0.3s ease;
+		font-weight: 500;
+	}
+
+	.cookies-block a:hover {
+		color: white;
+		border-bottom-color: rgba(255, 255, 255, 0.6);
+	}
+
+	/* Desktop Layout */
+	@media (min-width: 1024px) {
+		.cookies-layout {
+			padding: 6rem 4rem;
+		}
+
+		.cookies-block {
+			padding: 2.5rem;
+		}
+
+		.cookies-block h2 {
+			font-size: 1.75rem;
+		}
+
+		.cookies-block h3 {
+			font-size: 1.375rem;
+		}
+
+		.cookies-block p,
+		.cookies-block ul {
+			font-size: 1.1rem;
+		}
+
+		.cookie-type p,
+		.cookie-type ul {
+			font-size: 1rem;
+		}
+	}
+
+	@media (min-width: 1400px) {
+		.cookies-layout {
+			padding: 6rem 8rem;
+		}
+	}
+
+	/* Mobile Responsive */
+	@media (max-width: 767px) {
+		.cookies-layout {
+			padding: 3rem 1.5rem;
+		}
+
+		.cookies-content {
+			gap: 2rem;
+		}
+
+		.cookies-block {
+			padding: 1.5rem;
+		}
+
+		.cookies-block h2 {
+			font-size: 1.25rem;
+		}
+
+		.cookies-block h3 {
+			font-size: 1.125rem;
+		}
+
+		.cookies-block p,
+		.cookies-block ul {
+			font-size: 0.95rem;
+		}
+
+		.cookie-type {
+			padding: 1.25rem;
+		}
+
+		.cookie-type p,
+		.cookie-type ul {
+			font-size: 0.9rem;
+		}
+	}
+
+	@media (max-width: 480px) {
+		.cookies-layout {
+			padding: 2.5rem 1rem;
+		}
+
+		.cookies-block {
+			padding: 1.25rem;
+		}
+
+		.cookies-block h2 {
+			font-size: 1.125rem;
+		}
+
+		.cookies-block h3 {
+			font-size: 1rem;
+		}
+
+		.cookies-block p,
+		.cookies-block ul {
+			font-size: 0.9rem;
+		}
+
+		.cookie-type {
+			padding: 1rem;
+		}
+
+		.cookie-type p,
+		.cookie-type ul {
+			font-size: 0.85rem;
+		}
+	}
+</style> 

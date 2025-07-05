@@ -7,157 +7,383 @@ const t = useTranslations(lang);
 const translatePath = useTranslatedPath(lang);
 ---
 
-<section>
-	<div class="mx-auto max-w-7xl px-8 py-12 md:px-12 lg:px-32 lg:py-32">
-		<div>
+<section class="privacy-section">
+	<div class="privacy-layout">
+		<div class="privacy-header">
 			<Title 
 				title="Privacy Policy" 
 				subtitle={lang === "it" ? "Ultimo aggiornamento: 01 Gennaio 2025" : "Last updated: January 01, 2025"} 
-				class="pb-10 pt-20 uppercase" 
 			/>
 		</div>
-		<div class="prose-styles mt-12 lg:mt-24">
+		
+		<div class="privacy-content">
 			{lang === "it" ? (
 				<>
-					<h2>1. Informazioni generali</h2>
-					<p>
-						La presente Privacy Policy descrive le modalità di raccolta, utilizzo e protezione dei dati personali 
-						da parte di Rayo Consulting (P.IVA: 03988190546), con sede a Città di Castello, Italia.
-					</p>
+					<div class="privacy-block">
+						<h2>1. Informazioni generali</h2>
+						<p>
+							La presente Privacy Policy descrive le modalità di raccolta, utilizzo e protezione dei dati personali 
+							da parte di Rayo Consulting (P.IVA: 03988190546), con sede a Città di Castello, Italia.
+						</p>
+					</div>
 
-					<h2>2. Titolare del trattamento</h2>
-					<p>
-						<strong>Rayo Consulting</strong><br>
-						Patriarchi Dylan<br>
-						P.IVA: 03988190546<br>
-						Email: info@rayoconsulting.org<br>
-						Città di Castello, Italia
-					</p>
+					<div class="privacy-block">
+						<h2>2. Titolare del trattamento</h2>
+						<div class="contact-info">
+							<p><strong>Rayo Consulting</strong></p>
+							<p>Patriarchi Dylan</p>
+							<p>P.IVA: 03988190546</p>
+							<p>Email: <a href="mailto:info@rayoconsulting.org">info@rayoconsulting.org</a></p>
+							<p>Città di Castello, Italia</p>
+						</div>
+					</div>
 
-					<h2>3. Dati raccolti</h2>
-					<p>Raccogliamo i seguenti tipi di dati personali:</p>
-					<ul>
-						<li>Dati di contatto (nome, email, telefono)</li>
-						<li>Dati tecnici (indirizzo IP, tipo di browser, sistema operativo)</li>
-						<li>Dati di navigazione (pagine visitate, tempo di permanenza)</li>
-						<li>Cookie e tecnologie simili</li>
-					</ul>
+					<div class="privacy-block">
+						<h2>3. Dati raccolti</h2>
+						<p>Raccogliamo i seguenti tipi di dati personali:</p>
+						<ul>
+							<li>Dati di contatto (nome, email, telefono)</li>
+							<li>Dati tecnici (indirizzo IP, tipo di browser, sistema operativo)</li>
+							<li>Dati di navigazione (pagine visitate, tempo di permanenza)</li>
+							<li>Cookie e tecnologie simili</li>
+						</ul>
+					</div>
 
-					<h2>4. Finalità del trattamento</h2>
-					<p>I dati personali sono trattati per le seguenti finalità:</p>
-					<ul>
-						<li>Rispondere alle richieste di contatto</li>
-						<li>Fornire i nostri servizi di sviluppo web</li>
-						<li>Migliorare l'esperienza utente del sito web</li>
-						<li>Rispettare gli obblighi legali</li>
-					</ul>
+					<div class="privacy-block">
+						<h2>4. Finalità del trattamento</h2>
+						<p>I dati personali sono trattati per le seguenti finalità:</p>
+						<ul>
+							<li>Rispondere alle richieste di contatto</li>
+							<li>Fornire i nostri servizi di sviluppo web</li>
+							<li>Migliorare l'esperienza utente del sito web</li>
+							<li>Rispettare gli obblighi legali</li>
+						</ul>
+					</div>
 
-					<h2>5. Base giuridica</h2>
-					<p>
-						Il trattamento dei dati è basato sul consenso dell'interessato, sull'esecuzione di un contratto 
-						o sul legittimo interesse del titolare del trattamento.
-					</p>
+					<div class="privacy-block">
+						<h2>5. Base giuridica</h2>
+						<p>
+							Il trattamento dei dati è basato sul consenso dell'interessato, sull'esecuzione di un contratto 
+							o sul legittimo interesse del titolare del trattamento.
+						</p>
+					</div>
 
-					<h2>6. Conservazione dei dati</h2>
-					<p>
-						I dati personali sono conservati per il tempo necessario al raggiungimento delle finalità 
-						per cui sono stati raccolti, nel rispetto delle normative vigenti.
-					</p>
+					<div class="privacy-block">
+						<h2>6. Conservazione dei dati</h2>
+						<p>
+							I dati personali sono conservati per il tempo necessario al raggiungimento delle finalità 
+							per cui sono stati raccolti, nel rispetto delle normative vigenti.
+						</p>
+					</div>
 
-					<h2>7. Diritti dell'interessato</h2>
-					<p>Hai il diritto di:</p>
-					<ul>
-						<li>Accedere ai tuoi dati personali</li>
-						<li>Rettificare dati inesatti</li>
-						<li>Cancellare i tuoi dati</li>
-						<li>Limitare il trattamento</li>
-						<li>Portabilità dei dati</li>
-						<li>Opporti al trattamento</li>
-					</ul>
+					<div class="privacy-block">
+						<h2>7. Diritti dell'interessato</h2>
+						<p>Hai il diritto di:</p>
+						<ul>
+							<li>Accedere ai tuoi dati personali</li>
+							<li>Rettificare dati inesatti</li>
+							<li>Cancellare i tuoi dati</li>
+							<li>Limitare il trattamento</li>
+							<li>Portabilità dei dati</li>
+							<li>Opporti al trattamento</li>
+						</ul>
+					</div>
 
-					<h2>8. Cookie</h2>
-					<p>
-						Il nostro sito utilizza cookie tecnici necessari per il funzionamento del sito. 
-						Per maggiori informazioni consulta la nostra <a href="/it/cookies">Cookie Policy</a>.
-					</p>
+					<div class="privacy-block">
+						<h2>8. Cookie</h2>
+						<p>
+							Il nostro sito utilizza cookie tecnici necessari per il funzionamento del sito. 
+							Per maggiori informazioni consulta la nostra <a href="/it/cookies">Cookie Policy</a>.
+						</p>
+					</div>
 
-					<h2>9. Contatti</h2>
-					<p>
-						Per esercitare i tuoi diritti o per qualsiasi domanda relativa al trattamento dei dati, 
-						contattaci all'indirizzo: <a href="mailto:info@rayoconsulting.org">info@rayoconsulting.org</a>
-					</p>
+					<div class="privacy-block">
+						<h2>9. Contatti</h2>
+						<p>
+							Per esercitare i tuoi diritti o per qualsiasi domanda relativa al trattamento dei dati, 
+							contattaci all'indirizzo: <a href="mailto:info@rayoconsulting.org">info@rayoconsulting.org</a>
+						</p>
+					</div>
 				</>
 			) : (
 				<>
-					<h2>1. General Information</h2>
-					<p>
-						This Privacy Policy describes how Rayo Consulting (VAT: 03988190546), based in Città di Castello, Italy, 
-						collects, uses, and protects personal data.
-					</p>
+					<div class="privacy-block">
+						<h2>1. General Information</h2>
+						<p>
+							This Privacy Policy describes how Rayo Consulting (VAT: 03988190546), based in Città di Castello, Italy, 
+							collects, uses, and protects personal data.
+						</p>
+					</div>
 
-					<h2>2. Data Controller</h2>
-					<p>
-						<strong>Rayo Consulting</strong><br>
-						Dylan Patriarchi<br>
-						VAT: 03988190546<br>
-						Email: info@rayoconsulting.org<br>
-						Città di Castello, Italy
-					</p>
+					<div class="privacy-block">
+						<h2>2. Data Controller</h2>
+						<div class="contact-info">
+							<p><strong>Rayo Consulting</strong></p>
+							<p>Dylan Patriarchi</p>
+							<p>VAT: 03988190546</p>
+							<p>Email: <a href="mailto:info@rayoconsulting.org">info@rayoconsulting.org</a></p>
+							<p>Città di Castello, Italy</p>
+						</div>
+					</div>
 
-					<h2>3. Data Collected</h2>
-					<p>We collect the following types of personal data:</p>
-					<ul>
-						<li>Contact information (name, email, phone)</li>
-						<li>Technical data (IP address, browser type, operating system)</li>
-						<li>Navigation data (pages visited, time spent)</li>
-						<li>Cookies and similar technologies</li>
-					</ul>
+					<div class="privacy-block">
+						<h2>3. Data Collected</h2>
+						<p>We collect the following types of personal data:</p>
+						<ul>
+							<li>Contact information (name, email, phone)</li>
+							<li>Technical data (IP address, browser type, operating system)</li>
+							<li>Navigation data (pages visited, time spent)</li>
+							<li>Cookies and similar technologies</li>
+						</ul>
+					</div>
 
-					<h2>4. Purpose of Processing</h2>
-					<p>Personal data is processed for the following purposes:</p>
-					<ul>
-						<li>Responding to contact requests</li>
-						<li>Providing our web development services</li>
-						<li>Improving website user experience</li>
-						<li>Complying with legal obligations</li>
-					</ul>
+					<div class="privacy-block">
+						<h2>4. Purpose of Processing</h2>
+						<p>Personal data is processed for the following purposes:</p>
+						<ul>
+							<li>Responding to contact requests</li>
+							<li>Providing our web development services</li>
+							<li>Improving website user experience</li>
+							<li>Complying with legal obligations</li>
+						</ul>
+					</div>
 
-					<h2>5. Legal Basis</h2>
-					<p>
-						Data processing is based on the data subject's consent, contract execution, 
-						or the legitimate interest of the data controller.
-					</p>
+					<div class="privacy-block">
+						<h2>5. Legal Basis</h2>
+						<p>
+							Data processing is based on the data subject's consent, contract execution, 
+							or the legitimate interest of the data controller.
+						</p>
+					</div>
 
-					<h2>6. Data Retention</h2>
-					<p>
-						Personal data is retained for the time necessary to achieve the purposes for which it was collected, 
-						in compliance with applicable regulations.
-					</p>
+					<div class="privacy-block">
+						<h2>6. Data Retention</h2>
+						<p>
+							Personal data is retained for the time necessary to achieve the purposes for which it was collected, 
+							in compliance with applicable regulations.
+						</p>
+					</div>
 
-					<h2>7. Data Subject Rights</h2>
-					<p>You have the right to:</p>
-					<ul>
-						<li>Access your personal data</li>
-						<li>Rectify inaccurate data</li>
-						<li>Delete your data</li>
-						<li>Restrict processing</li>
-						<li>Data portability</li>
-						<li>Object to processing</li>
-					</ul>
+					<div class="privacy-block">
+						<h2>7. Data Subject Rights</h2>
+						<p>You have the right to:</p>
+						<ul>
+							<li>Access your personal data</li>
+							<li>Rectify inaccurate data</li>
+							<li>Delete your data</li>
+							<li>Restrict processing</li>
+							<li>Data portability</li>
+							<li>Object to processing</li>
+						</ul>
+					</div>
 
-					<h2>8. Cookies</h2>
-					<p>
-						Our website uses technical cookies necessary for the site's operation. 
-						For more information, see our <a href="/cookies">Cookie Policy</a>.
-					</p>
+					<div class="privacy-block">
+						<h2>8. Cookies</h2>
+						<p>
+							Our website uses technical cookies necessary for the site's operation. 
+							For more information, see our <a href="/cookies">Cookie Policy</a>.
+						</p>
+					</div>
 
-					<h2>9. Contact</h2>
-					<p>
-						To exercise your rights or for any questions regarding data processing, 
-						contact us at: <a href="mailto:info@rayoconsulting.org">info@rayoconsulting.org</a>
-					</p>
+					<div class="privacy-block">
+						<h2>9. Contact</h2>
+						<p>
+							To exercise your rights or for any questions regarding data processing, 
+							contact us at: <a href="mailto:info@rayoconsulting.org">info@rayoconsulting.org</a>
+						</p>
+					</div>
 				</>
 			)}
 		</div>
 	</div>
 </section>
+
+<style>
+	.privacy-section {
+		min-height: 100vh;
+		position: relative;
+	}
+
+	.privacy-layout {
+		width: 100vw;
+		margin-left: calc(-50vw + 50%);
+		padding: 4rem 2rem;
+		background: linear-gradient(135deg, rgba(0, 0, 0, 0.05) 0%, rgba(0, 0, 0, 0.15) 100%);
+	}
+
+	.privacy-header {
+		text-align: center;
+		max-width: 800px;
+		margin: 0 auto 4rem auto;
+	}
+
+	.privacy-content {
+		max-width: 800px;
+		margin: 0 auto;
+		display: flex;
+		flex-direction: column;
+		gap: 2.5rem;
+	}
+
+	.privacy-block {
+		background: rgba(255, 255, 255, 0.03);
+		border: 1px solid rgba(255, 255, 255, 0.08);
+		border-radius: 1rem;
+		padding: 2rem;
+		backdrop-filter: blur(10px);
+		transition: all 0.3s ease;
+	}
+
+	.privacy-block:hover {
+		background: rgba(255, 255, 255, 0.05);
+		border-color: rgba(255, 255, 255, 0.12);
+	}
+
+	.privacy-block h2 {
+		color: white;
+		font-size: 1.5rem;
+		font-weight: 600;
+		margin: 0 0 1rem 0;
+		font-family: 'Inter', sans-serif;
+		line-height: 1.3;
+	}
+
+	.privacy-block p {
+		color: rgba(255, 255, 255, 0.8);
+		font-size: 1rem;
+		line-height: 1.6;
+		margin: 0 0 1rem 0;
+		font-family: 'Inter', sans-serif;
+		font-weight: 400;
+	}
+
+	.privacy-block p:last-child {
+		margin-bottom: 0;
+	}
+
+	.privacy-block ul {
+		color: rgba(255, 255, 255, 0.8);
+		font-size: 1rem;
+		line-height: 1.6;
+		margin: 0;
+		padding-left: 1.5rem;
+		font-family: 'Inter', sans-serif;
+		font-weight: 400;
+	}
+
+	.privacy-block li {
+		margin-bottom: 0.5rem;
+	}
+
+	.privacy-block li:last-child {
+		margin-bottom: 0;
+	}
+
+	.contact-info {
+		background: rgba(255, 255, 255, 0.03);
+		border: 1px solid rgba(255, 255, 255, 0.08);
+		border-radius: 0.75rem;
+		padding: 1.5rem;
+		margin-top: 1rem;
+	}
+
+	.contact-info p {
+		margin-bottom: 0.5rem;
+		font-size: 0.95rem;
+	}
+
+	.contact-info p:last-child {
+		margin-bottom: 0;
+	}
+
+	.contact-info strong {
+		color: white;
+		font-weight: 600;
+	}
+
+	.privacy-block a {
+		color: rgba(255, 255, 255, 0.9);
+		text-decoration: none;
+		border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+		transition: all 0.3s ease;
+		font-weight: 500;
+	}
+
+	.privacy-block a:hover {
+		color: white;
+		border-bottom-color: rgba(255, 255, 255, 0.6);
+	}
+
+	/* Desktop Layout */
+	@media (min-width: 1024px) {
+		.privacy-layout {
+			padding: 6rem 4rem;
+		}
+
+		.privacy-block {
+			padding: 2.5rem;
+		}
+
+		.privacy-block h2 {
+			font-size: 1.75rem;
+		}
+
+		.privacy-block p,
+		.privacy-block ul {
+			font-size: 1.1rem;
+		}
+	}
+
+	@media (min-width: 1400px) {
+		.privacy-layout {
+			padding: 6rem 8rem;
+		}
+	}
+
+	/* Mobile Responsive */
+	@media (max-width: 767px) {
+		.privacy-layout {
+			padding: 3rem 1.5rem;
+		}
+
+		.privacy-content {
+			gap: 2rem;
+		}
+
+		.privacy-block {
+			padding: 1.5rem;
+		}
+
+		.privacy-block h2 {
+			font-size: 1.25rem;
+		}
+
+		.privacy-block p,
+		.privacy-block ul {
+			font-size: 0.95rem;
+		}
+
+		.contact-info {
+			padding: 1.25rem;
+		}
+	}
+
+	@media (max-width: 480px) {
+		.privacy-layout {
+			padding: 2.5rem 1rem;
+		}
+
+		.privacy-block {
+			padding: 1.25rem;
+		}
+
+		.privacy-block h2 {
+			font-size: 1.125rem;
+		}
+
+		.privacy-block p,
+		.privacy-block ul {
+			font-size: 0.9rem;
+		}
+	}
+</style>
